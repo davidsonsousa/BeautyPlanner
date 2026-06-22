@@ -1,0 +1,17 @@
+﻿global using BeautyPlanner.Shared.Exceptions;
+global using BeautyPlanner.Shared.Interfaces;
+global using BeautyPlanner.TenantService.Api.Contracts.Requests;
+global using BeautyPlanner.TenantService.Api.Contracts.Responses;
+global using BeautyPlanner.TenantService.Api.Extensions;
+global using BeautyPlanner.TenantService.Api.Middlewares;
+global using BeautyPlanner.TenantService.Application.Interfaces;
+global using BeautyPlanner.TenantService.Application.Models;
+global using BeautyPlanner.TenantService.Application.Services;
+global using BeautyPlanner.TenantService.Application.Services.Interfaces;
+global using BeautyPlanner.TenantService.Domain.Entities;
+global using BeautyPlanner.TenantService.Infrastructure.Auth;
+global using BeautyPlanner.TenantService.Infrastructure.Persistence;
+global using BeautyPlanner.TenantService.Infrastructure.Persistence.Repositories;
+global using Microsoft.AspNetCore.Mvc;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.Extensions.DependencyInjection.Extensions;

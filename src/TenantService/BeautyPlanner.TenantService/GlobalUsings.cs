@@ -1,0 +1,14 @@
+﻿global using BeautyPlanner.Shared.Common;
+global using BeautyPlanner.Shared.Domain.Common;
+global using BeautyPlanner.Shared.Exceptions;
+global using BeautyPlanner.Shared.Interfaces;
+global using BeautyPlanner.TenantService.Application.Interfaces;
+global using BeautyPlanner.TenantService.Application.Models;
+global using BeautyPlanner.TenantService.Application.Services.Interfaces;
+global using BeautyPlanner.TenantService.Domain.Entities;
+global using BeautyPlanner.TenantService.Infrastructure.Persistence;
+global using BeautyPlanner.TenantService.Infrastructure.Persistence.Configuration.Helpers;
+global using Microsoft.AspNetCore.Http;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.EntityFrameworkCore.Metadata.Builders;
+global using System.Linq.Expressions;

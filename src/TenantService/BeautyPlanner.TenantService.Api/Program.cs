@@ -4,13 +4,11 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<TenantDbContext>(options =>
 {
-    options.EnableSensitiveDataLogging(builder.Environment.IsDevelopment())
-           .UseSqlServer(connectionString,
+    options.UseSqlServer(connectionString,
                          o => o.MigrationsAssembly("BeautyPlanner.TenantService")
                                .UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery));
-    options.LogTo(Console.WriteLine, LogLevel.Information);
-    options.EnableSensitiveDataLogging();
 });
+
 if (builder.Environment.IsDevelopment())
 {
     builder.Services.AddDatabaseDeveloperPageExceptionFilter();
@@ -20,10 +18,16 @@ builder.Services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.TryAddScoped<IUserContext, HttpUserContext>();
 builder.Services.TryAddScoped<IRepository<Salon>, SalonRepository>();
 builder.Services.TryAddScoped(typeof(IRepository<>), typeof(Repository<>));
-builder.Services.AddDbContext<TenantDbContext>();
 builder.Services.TryAddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.TryAddScoped<ITenantService, TenantService>();
 builder.Services.TryAddScoped<ISalonService, SalonService>();
+
+builder.Services.AddApiVersioning(options =>
+{
+    options.DefaultApiVersion = new ApiVersion(1, 0);
+    options.AssumeDefaultVersionWhenUnspecified = true;
+    options.ReportApiVersions = true;
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
@@ -38,6 +42,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseGlobalExceptionHandling();
+
+app.UseRequestLogging();
 
 app.UseHttpsRedirection();
 

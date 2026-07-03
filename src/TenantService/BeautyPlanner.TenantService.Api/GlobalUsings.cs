@@ -1,4 +1,6 @@
-﻿global using BeautyPlanner.Shared.Exceptions;
+﻿global using Asp.Versioning;
+global using BeautyPlanner.Shared.Api;
+global using BeautyPlanner.Shared.Exceptions;
 global using BeautyPlanner.Shared.Interfaces;
 global using BeautyPlanner.TenantService.Api.Contracts.Requests;
 global using BeautyPlanner.TenantService.Api.Contracts.Responses;
@@ -15,3 +17,4 @@ global using BeautyPlanner.TenantService.Infrastructure.Persistence.Repositories
 global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.Extensions.DependencyInjection.Extensions;
+global using System.Diagnostics;

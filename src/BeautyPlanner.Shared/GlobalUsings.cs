@@ -1,3 +1,9 @@
-﻿global using Microsoft.AspNetCore.Mvc;
+﻿global using BeautyPlanner.Shared.Domain.Common;
+global using BeautyPlanner.Shared.Interfaces;
+global using Microsoft.AspNetCore.Http;
+global using Microsoft.AspNetCore.Mvc;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.EntityFrameworkCore.Metadata.Builders;
 global using Microsoft.Extensions.Logging;
 global using System.ComponentModel.DataAnnotations.Schema;
+global using System.Linq.Expressions;

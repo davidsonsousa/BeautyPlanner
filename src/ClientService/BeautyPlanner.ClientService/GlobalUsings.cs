@@ -1,0 +1,12 @@
+﻿global using BeautyPlanner.ClientService.Application.Models;
+global using BeautyPlanner.ClientService.Application.Services.Interfaces;
+global using BeautyPlanner.ClientService.Domain.Entities;
+global using BeautyPlanner.Shared.Application.Models;
+global using BeautyPlanner.Shared.Common;
+global using BeautyPlanner.Shared.Domain.Common;
+global using BeautyPlanner.Shared.Exceptions;
+global using BeautyPlanner.Shared.Infrastructure.Persistence;
+global using BeautyPlanner.Shared.Infrastructure.Persistence.Helpers;
+global using BeautyPlanner.Shared.Interfaces;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.EntityFrameworkCore.Metadata.Builders;

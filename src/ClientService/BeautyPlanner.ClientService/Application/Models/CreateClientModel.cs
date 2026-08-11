@@ -7,5 +7,5 @@ public record CreateClientModel(
     string PhoneNumber,
     DateTime? DateOfBirth,
     AddressModel? Address,
-    int TenantId
+    Guid TenantId
 );

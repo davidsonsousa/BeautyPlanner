@@ -8,5 +8,6 @@ public record UpdateClientModel(
     string Email,
     string PhoneNumber,
     DateTime? DateOfBirth,
-    AddressModel? Address
+    AddressModel? Address,
+    Guid TenantId
 );

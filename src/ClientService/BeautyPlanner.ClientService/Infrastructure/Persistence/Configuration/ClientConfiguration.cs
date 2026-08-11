@@ -27,6 +27,8 @@ public class ClientConfiguration : IEntityTypeConfiguration<Client>
         b.Property(model => model.DateOfBirth)
             .HasMaxLength(9);
 
+        b.OwnsOne(model => model.Address, a => AddressConfigurationHelper.AddAddressConfiguration(a));
+
         AuditConfigurationHelper.AddAuditingConfiguration(b);
     }
 }

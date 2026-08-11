@@ -2,7 +2,7 @@
 
 public class ClientDbContext : BaseDbContext
 {
-    public DbSet<Client> Tenants => Set<Client>();
+    public DbSet<Client> Clients => Set<Client>();
 
     public ClientDbContext(DbContextOptions<ClientDbContext> options, IUserContext uc) : base(options, uc)
     {

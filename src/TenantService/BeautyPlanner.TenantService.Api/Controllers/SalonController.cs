@@ -5,9 +5,9 @@
 [Route("v{version:apiVersion}/[controller]")]
 public class SalonController : BaseController
 {
-    private ISalonService _salonService;
+    private ISalonManagementService _salonService;
 
-    public SalonController(ISalonService salonService, ILoggerFactory loggerFactory) : base(loggerFactory, "SalonController")
+    public SalonController(ISalonManagementService salonService, ILoggerFactory loggerFactory) : base(loggerFactory, nameof(SalonController))
     {
         _salonService = salonService;
     }

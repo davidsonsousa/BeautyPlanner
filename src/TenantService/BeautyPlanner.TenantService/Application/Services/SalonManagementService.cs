@@ -1,12 +1,12 @@
 ﻿namespace BeautyPlanner.TenantService.Application.Services;
 
-public class SalonService : ISalonService
+public class SalonManagementService : ISalonManagementService
 {
     private readonly IRepository<Salon> _salonRepository;
     private readonly IRepository<Tenant> _tenantRepository;
     private readonly IUnitOfWork _unitOfWork;
 
-    public SalonService(IRepository<Salon> repository, IRepository<Tenant> tenantRepository, IUnitOfWork unitOfWork)
+    public SalonManagementService(IRepository<Salon> repository, IRepository<Tenant> tenantRepository, IUnitOfWork unitOfWork)
     {
         _salonRepository = repository;
         _tenantRepository = tenantRepository;
@@ -17,10 +17,7 @@ public class SalonService : ISalonService
     {
         var tenant = await _tenantRepository.GetByVanityIdAsync(model.TenantId) ?? throw new NotFoundException("Tenant", model.TenantId);
 
-        var salonAddress = new Address(model.Address.Line1, model.Address.Line2, model.Address.PostalCode,
-                                  model.Address.City, model.Address.StateProvince, model.Address.Country);
-
-        var salon = new Salon(model.Name, model.Description, model.Email, model.PhoneNumber, salonAddress, tenant.Id);
+        var salon = new Salon(model.Name, model.Description, model.Email, model.PhoneNumber, PrepareAddress(model.Address), tenant.Id);
 
         await _salonRepository.AddAsync(salon);
         await _unitOfWork.SaveChangesAsync();
@@ -31,11 +28,8 @@ public class SalonService : ISalonService
     public async Task<Result<SalonResult>> UpdateSalonAsync(UpdateSalonModel model)
     {
         var salon = await _salonRepository.GetByVanityIdAsync(model.VanityId) ?? throw new NotFoundException("Salon", model.VanityId);
-        
-        var salonAddress = new Address(model.Address.Line1, model.Address.Line2, model.Address.PostalCode,
-                                  model.Address.City, model.Address.StateProvince, model.Address.Country);
 
-        salon.Update(model.Name, model.Description, model.Email, model.PhoneNumber, salonAddress);
+        salon.Update(model.Name, model.Description, model.Email, model.PhoneNumber, PrepareAddress(model.Address));
         _salonRepository.Update(salon);
         await _unitOfWork.SaveChangesAsync();
 
@@ -69,6 +63,11 @@ public class SalonService : ISalonService
         var tenants = await _salonRepository.ListAsync();
 
         return Result<List<SalonResult>>.Success(tenants.Select(MapToResult).ToList());
+    }
+
+    private static Address PrepareAddress(AddressModel model)
+    {
+        return new Address(model.Line1, model.Line2, model.PostalCode, model.City, model.StateProvince, model.Country);
     }
 
     private static SalonResult MapToResult(Salon salon)

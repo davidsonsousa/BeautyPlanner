@@ -1,6 +1,6 @@
 ﻿namespace BeautyPlanner.TenantService.Application.Services.Interfaces;
 
-public interface ITenantService
+public interface ITenantManagementService
 {
     Task<Result<TenantResult>> CreateTenantAsync(CreateTenantModel request);
 

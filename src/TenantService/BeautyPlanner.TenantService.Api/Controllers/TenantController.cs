@@ -5,9 +5,9 @@
 [Route("v{version:apiVersion}/[controller]")]
 public class TenantController : BaseController
 {
-    private readonly ITenantService _tenantService;
+    private readonly ITenantManagementService _tenantService;
 
-    public TenantController(ITenantService tenantService, ILoggerFactory loggerFactory) : base(loggerFactory, "TenantController")
+    public TenantController(ITenantManagementService tenantService, ILoggerFactory loggerFactory) : base(loggerFactory, nameof(TenantController))
     {
         _tenantService = tenantService;
     }

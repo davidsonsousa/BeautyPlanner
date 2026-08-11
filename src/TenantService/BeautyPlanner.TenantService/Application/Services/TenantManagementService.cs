@@ -1,11 +1,11 @@
 ﻿namespace BeautyPlanner.TenantService.Application.Services;
 
-public class TenantService : ITenantService
+public class TenantManagementService : ITenantManagementService
 {
     private readonly IRepository<Tenant> _repository;
     private readonly IUnitOfWork _unitOfWork;
 
-    public TenantService(IRepository<Tenant> repository, IUnitOfWork unitOfWork)
+    public TenantManagementService(IRepository<Tenant> repository, IUnitOfWork unitOfWork)
     {
         _repository = repository;
         _unitOfWork = unitOfWork;

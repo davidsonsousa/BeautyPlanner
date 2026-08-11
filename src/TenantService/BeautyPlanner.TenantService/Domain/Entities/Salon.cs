@@ -4,19 +4,13 @@ public class Salon : AuditableEntity
 {
     public Salon()
     {
-        
+
     }
 
     public Salon(string name, string? description, string email, string phoneNumber, Address address, int tenantId)
     {
-        Name = name ?? throw new ArgumentNullException(nameof(name));
-        Description = description;
-        Email = email ?? throw new ArgumentNullException(nameof(email));
-        PhoneNumber = phoneNumber ?? throw new ArgumentNullException(nameof(phoneNumber));
-        
-        ArgumentNullException.ThrowIfNull(address);
-        Address = new Address(address.Line1, address.Line2, address.PostalCode, address.City, address.StateProvince, address.Country);
-        
+        SetPropertyValues(name, description, email, phoneNumber, address);
+
         TenantId = tenantId;
     }
 
@@ -25,7 +19,7 @@ public class Salon : AuditableEntity
     public string? Description { get; private set; }
 
     public string Email { get; private set; }
-    
+
     public string PhoneNumber { get; private set; }
 
     public Address Address { get; private set; }
@@ -37,6 +31,11 @@ public class Salon : AuditableEntity
     public virtual Tenant Tenant { get; private set; } = null!;
 
     public void Update(string name, string? description, string email, string phoneNumber, Address address)
+    {
+        SetPropertyValues(name, description, email, phoneNumber, address);
+    }
+
+    private void SetPropertyValues(string name, string? description, string email, string phoneNumber, Address address)
     {
         Name = name ?? throw new ArgumentNullException(nameof(name));
         Description = description;

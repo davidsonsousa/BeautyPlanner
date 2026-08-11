@@ -14,13 +14,14 @@ if (builder.Environment.IsDevelopment())
     builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 }
 
+builder.Services.TryAddScoped<BaseDbContext>(sp => sp.GetRequiredService<TenantDbContext>());
 builder.Services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.TryAddScoped<IUserContext, HttpUserContext>();
-builder.Services.TryAddScoped<IRepository<Salon>, SalonRepository>();
 builder.Services.TryAddScoped(typeof(IRepository<>), typeof(Repository<>));
+builder.Services.TryAddScoped<IRepository<Salon>, SalonRepository>();
 builder.Services.TryAddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.TryAddScoped<ITenantService, TenantService>();
-builder.Services.TryAddScoped<ISalonService, SalonService>();
+builder.Services.TryAddScoped<ITenantManagementService, TenantManagementService>();
+builder.Services.TryAddScoped<ISalonManagementService, SalonManagementService>();
 
 builder.Services.AddApiVersioning(options =>
 {

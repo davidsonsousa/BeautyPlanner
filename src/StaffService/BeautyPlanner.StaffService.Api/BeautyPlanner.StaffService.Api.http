@@ -1,0 +1,6 @@
+@BeautyPlanner.StaffService.Api_HostAddress = http://localhost:5062
+
+GET {{BeautyPlanner.StaffService.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

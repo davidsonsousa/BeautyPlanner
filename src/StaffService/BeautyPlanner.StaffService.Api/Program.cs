@@ -20,7 +20,7 @@ builder.Services.TryAddScoped<IUserContext, HttpUserContext>();
 builder.Services.TryAddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.TryAddScoped<IStaffRepository, StaffRepository>();
 builder.Services.TryAddScoped<IRepository<Profession>, ProfessionRepository>();
-builder.Services.TryAddScoped<IRepository<AvailabilityPeriod>, AvailabilityPeriodRepository>();
+builder.Services.TryAddScoped<IAvailabilityPeriodRepository, AvailabilityPeriodRepository>();
 builder.Services.TryAddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.TryAddScoped<IStaffManagementService, StaffManagementService>();
 builder.Services.TryAddScoped<IProfessionManagementService, ProfessionManagementService>();

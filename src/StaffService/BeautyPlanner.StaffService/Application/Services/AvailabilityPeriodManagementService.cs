@@ -2,11 +2,11 @@
 
 public class AvailabilityPeriodManagementService : IAvailabilityPeriodManagementService
 {
-    private readonly IRepository<AvailabilityPeriod> _repository;
-    private readonly IRepository<StaffMember> _staffMemberRepository;
+    private readonly IAvailabilityPeriodRepository _repository;
+    private readonly IStaffRepository _staffMemberRepository;
     private readonly IUnitOfWork _unitOfWork;
 
-    public AvailabilityPeriodManagementService(IRepository<AvailabilityPeriod> repository, IRepository<StaffMember> staffMemberRepository, IUnitOfWork unitOfWork)
+    public AvailabilityPeriodManagementService(IAvailabilityPeriodRepository repository, IStaffRepository staffMemberRepository, IUnitOfWork unitOfWork)
     {
         _repository = repository;
         _staffMemberRepository = staffMemberRepository;
@@ -61,6 +61,13 @@ public class AvailabilityPeriodManagementService : IAvailabilityPeriodManagement
     public async Task<Result<List<AvailabilityPeriodResult>>> GetAvailabilityPeriodsAsync()
     {
         var availabilityPeriods = await _repository.ListAsync();
+
+        return Result<List<AvailabilityPeriodResult>>.Success(availabilityPeriods.Select(MapToResult).ToList());
+    }
+
+    public async Task<Result<List<AvailabilityPeriodResult>>> GetAvailabilityPeriodsForStaffMemberAsync(Guid staffMemberId)
+    {
+        var availabilityPeriods = await _repository.ListForStaffMember(staffMemberId);
 
         return Result<List<AvailabilityPeriodResult>>.Success(availabilityPeriods.Select(MapToResult).ToList());
     }

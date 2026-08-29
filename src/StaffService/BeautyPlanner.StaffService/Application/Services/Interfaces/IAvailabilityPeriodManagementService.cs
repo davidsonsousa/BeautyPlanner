@@ -13,4 +13,6 @@ public interface IAvailabilityPeriodManagementService
     Task<Result<AvailabilityPeriodResult>> GetAvailabilityPeriodAsync(Guid vanityId);
 
     Task<Result<List<AvailabilityPeriodResult>>> GetAvailabilityPeriodsAsync();
+
+    Task<Result<List<AvailabilityPeriodResult>>> GetAvailabilityPeriodsForStaffMemberAsync(Guid staffMemberId);
 }

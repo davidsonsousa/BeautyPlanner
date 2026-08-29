@@ -2,6 +2,11 @@
 
 public class StaffMember : Person
 {
+    public StaffMember()
+    {
+
+    }
+
     public StaffMember(string firstName, string lastName, string email, string phoneNumber, int professionId, DateTime? dateOfBirth, Address? address, Guid salonVanityId)
     {
         SetPropertyValues(firstName, lastName, email, phoneNumber, dateOfBirth, address);

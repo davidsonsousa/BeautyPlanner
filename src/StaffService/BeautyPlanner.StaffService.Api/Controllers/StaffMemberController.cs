@@ -6,10 +6,12 @@
 public class StaffMemberController : BaseController
 {
     private IStaffManagementService _staffService;
+    private IAvailabilityPeriodManagementService _availabilityPeriodService;
 
-    public StaffMemberController(IStaffManagementService staffService, ILoggerFactory loggerFactory) : base(loggerFactory, nameof(StaffMemberController))
+    public StaffMemberController(IStaffManagementService staffService, IAvailabilityPeriodManagementService availabilityPeriodService, ILoggerFactory loggerFactory) : base(loggerFactory, nameof(StaffMemberController))
     {
         _staffService = staffService;
+        _availabilityPeriodService = availabilityPeriodService;
     }
 
     [HttpPost]
@@ -94,5 +96,42 @@ public class StaffMemberController : BaseController
         LogInfo("StaffMember deleted successfully {id}", id);
 
         return NoContent();
+    }
+
+    [HttpPost("{staffMemberId}/availability-periods")]
+    public async Task<IActionResult> CreateAvailabilityPeriod(Guid staffMemberId, CreateAvailabilityPeriodRequest request)
+    {
+        LogInfo("CreateAvailabilityPeriod called for Staff Member {staffMemberId}", staffMemberId);
+
+        var result = await _availabilityPeriodService.CreateAvailabilityPeriodAsync(request.ToModel(staffMemberId));
+
+        if (!result.IsSuccess)
+        {
+            LogWarning("CreateAvailabilityPeriod failed: {Error}", result.Error);
+            return BadRequest(new { error = result.Error });
+        }
+
+        LogInfo("AvailabilityPeriod created successfully {AvailabilityPeriodId}", result.Value!.VanityId);
+
+        return CreatedAtAction(nameof(CreateAvailabilityPeriod), new { id = result.Value!.VanityId }, result.Value.ToResponse());
+    }
+
+
+    [HttpGet("{staffMemberId}/availability-periods")]
+    public async Task<IActionResult> GetAvailabilityPeriods(Guid staffMemberId)
+    {
+        LogInfo("GetAvailabilityPeriods called with Staff Member {id}", staffMemberId);
+
+        var result = await _availabilityPeriodService.GetAvailabilityPeriodsForStaffMemberAsync(staffMemberId);
+
+        if (!result.IsSuccess)
+        {
+            LogWarning("GetAvailabilityPeriods failed: {Error}", result.Error);
+            return NotFound(new { error = result.Error });
+        }
+
+        LogInfo("GetAvailabilityPeriods retrieved successfully for Staff Member {StaffMemberId}", staffMemberId);
+
+        return Ok(result.Value.ToResponse());
     }
 }

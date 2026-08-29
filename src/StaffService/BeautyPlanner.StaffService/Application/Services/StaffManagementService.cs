@@ -2,13 +2,13 @@
 
 public class StaffManagementService : IStaffManagementService
 {
-    private readonly IRepository<StaffMember> _staffRepository;
+    private readonly IStaffRepository _staffRepository;
     private readonly IRepository<Profession> _professionRepository;
     private readonly IUnitOfWork _unitOfWork;
 
-    public StaffManagementService(IRepository<StaffMember> repository, IRepository<Profession> professionRepository, IUnitOfWork unitOfWork)
+    public StaffManagementService(IStaffRepository staffRepository, IRepository<Profession> professionRepository, IUnitOfWork unitOfWork)
     {
-        _staffRepository = repository;
+        _staffRepository = staffRepository;
         _professionRepository = professionRepository;
         _unitOfWork = unitOfWork;
     }
@@ -64,9 +64,9 @@ public class StaffManagementService : IStaffManagementService
 
     public async Task<Result<List<StaffMemberResult>>> GetStaffMembersAsync()
     {
-        var tenants = await _staffRepository.ListAsync();
+        var staffMembers = await _staffRepository.ListWithProfessionAsync();
 
-        return Result<List<StaffMemberResult>>.Success(tenants.Select(MapToResult).ToList());
+        return Result<List<StaffMemberResult>>.Success(staffMembers.Select(MapToResult).ToList());
     }
 
     private static Address PrepareAddress(AddressModel model)

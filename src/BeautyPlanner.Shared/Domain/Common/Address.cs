@@ -4,7 +4,7 @@ public class Address
 {
     public Address()
     {
-        
+
     }
 
     public Address(string line1, string? line2, string postalCode, string city, string? stateProvince, string country)

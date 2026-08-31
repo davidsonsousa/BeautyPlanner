@@ -1,0 +1,35 @@
+<Solution>
+  <Folder Name="/.solution-files/">
+    <File Path=".editorconfig" />
+    <File Path=".gitignore" />
+    <File Path="global.json" />
+    <File Path="LICENSE" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/.solution-files/.github/" />
+  <Folder Name="/.solution-files/.github/workflows/" />
+  <Folder Name="/.solution-files/.github/workflows/client-service/">
+    <File Path=".github/workflows/client-service/build-test.yml" />
+    <File Path=".github/workflows/client-service/preview.yml" />
+    <File Path=".github/workflows/client-service/release.yml" />
+  </Folder>
+  <Folder Name="/.solution-files/.github/workflows/tenant-service/">
+    <File Path=".github/workflows/tenant-service/build-test.yml" />
+    <File Path=".github/workflows/tenant-service/preview.yml" />
+    <File Path=".github/workflows/tenant-service/release.yml" />
+  </Folder>
+  <Folder Name="/ClientService/">
+    <Project Path="src/ClientService/BeautyPlanner.ClientService.Api/BeautyPlanner.ClientService.Api.csproj" Id="26552cf8-c476-4990-921e-81ac38fb209d" />
+    <Project Path="src/ClientService/BeautyPlanner.ClientService/BeautyPlanner.ClientService.csproj" Id="f552616a-fcab-46e6-8732-76d62151aa8c" />
+  </Folder>
+  <Folder Name="/StaffService/">
+    <Project Path="src/StaffService/BeautyPlanner.StaffService.Api/BeautyPlanner.StaffService.Api.csproj" Id="da243fc2-a1b9-4dc6-8c58-9fffc6a041ae" />
+    <Project Path="src/StaffService/BeautyPlanner.StaffService/BeautyPlanner.StaffService.csproj" Id="a8fb7dbf-0b67-4a0b-91fd-e135c32def63" />
+  </Folder>
+  <Folder Name="/TenantService/">
+    <Project Path="src/TenantService/BeautyPlanner.TenantService.Api/BeautyPlanner.TenantService.Api.csproj" Id="ad24655b-59dd-4105-a2df-59e1be927c91" />
+    <Project Path="src/TenantService/BeautyPlanner.TenantService/BeautyPlanner.TenantService.csproj" Id="c2ea27f5-d390-4bdf-b0de-3411f934b8e0" />
+  </Folder>
+  <Project Path="src/BeautyPlanner.Domain/BeautyPlanner.Domain.csproj" />
+  <Project Path="src/BeautyPlanner.Shared/BeautyPlanner.Shared.csproj" Id="9f494612-0cd2-4ce1-83f1-11264b5da5fe" />
+</Solution>

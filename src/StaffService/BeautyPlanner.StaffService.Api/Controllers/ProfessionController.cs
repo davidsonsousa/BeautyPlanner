@@ -2,7 +2,7 @@
 
 [ApiController]
 [ApiVersion("1.0")]
-[Route("v{version:apiVersion}/[controller]")]
+[Route("v{version:apiVersion}/professions")]
 public class ProfessionController : BaseController
 {
     private IProfessionManagementService _professionService;

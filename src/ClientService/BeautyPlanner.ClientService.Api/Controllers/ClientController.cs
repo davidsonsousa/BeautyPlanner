@@ -2,7 +2,7 @@
 
 [ApiController]
 [ApiVersion("1.0")]
-[Route("v{version:apiVersion}/[controller]")]
+[Route("v{version:apiVersion}/clients")]
 public class ClientController : BaseController
 {
     IClientManagementService _clientService;

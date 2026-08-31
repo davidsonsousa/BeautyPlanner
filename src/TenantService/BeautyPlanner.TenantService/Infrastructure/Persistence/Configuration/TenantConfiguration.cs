@@ -18,6 +18,8 @@ public class TenantConfiguration : IEntityTypeConfiguration<Tenant>
         AuditConfigurationHelper.AddAuditingConfiguration(b);
 
         // Relationships
-        b.HasMany(model => model.Salons);
+        b.HasMany(t => t.Salons)
+            .WithOne(s => s.Tenant)
+            .HasForeignKey(s => s.TenantId);
     }
 }

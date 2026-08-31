@@ -3,10 +3,6 @@
 # You can modify the rules from these initially generated values to suit your own policies
 # You can learn more about editorconfig here: https://docs.microsoft.com/en-us/visualstudio/ide/editorconfig-code-style-settings-reference
 
-[/src/CmsEngine.{Data/Migrations,Ui/Areas/Identity/Pages}/**]
-generated_code = true
-dotnet_analyzer_diagnostic.severity = none
-
 [*.cs]
 
 csharp_style_namespace_declarations = file_scoped:warning
@@ -78,6 +74,8 @@ csharp_prefer_braces = true:suggestion
 csharp_style_expression_bodied_constructors = false:suggestion
 #prefer block bodies for methods
 csharp_style_expression_bodied_methods = false:suggestion
+#prefer separate constructors
+csharp_style_prefer_primary_constructors = false:suggestion
 
 #Style - expression level options
 

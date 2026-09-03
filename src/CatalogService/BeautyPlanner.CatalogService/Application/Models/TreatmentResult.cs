@@ -6,5 +6,7 @@ public record TreatmentResult(
     string Name,
     string? Description,
     decimal Price,
-    int DurationInMinutes
+    int DurationInMinutes,
+    Guid ProfessionId,
+    string TreatmentCategory
 );

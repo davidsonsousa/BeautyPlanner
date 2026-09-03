@@ -1,4 +1,4 @@
-﻿namespace BeautyPlanner.CatalogService.Infrastructure;
+﻿namespace BeautyPlanner.CatalogService.Infrastructure.Persistence;
 
 public class CatalogDbContext : BaseDbContext
 {

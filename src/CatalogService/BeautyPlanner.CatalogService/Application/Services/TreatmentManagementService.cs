@@ -2,11 +2,11 @@
 
 public class TreatmentManagementService : ITreatmentManagementService
 {
-    private readonly IRepository<Treatment> _treatmentRepository;
+    private readonly ITreatmentRepository _treatmentRepository;
     private readonly IRepository<TreatmentCategory> _treatmentCategoryRepository;
     private readonly IUnitOfWork _unitOfWork;
 
-    public TreatmentManagementService(IRepository<Treatment> repository, IRepository<TreatmentCategory> treatmentCategoryRepository, IUnitOfWork unitOfWork)
+    public TreatmentManagementService(ITreatmentRepository repository, IRepository<TreatmentCategory> treatmentCategoryRepository, IUnitOfWork unitOfWork)
     {
         _treatmentRepository = repository;
         _treatmentCategoryRepository = treatmentCategoryRepository;
@@ -60,14 +60,9 @@ public class TreatmentManagementService : ITreatmentManagementService
 
     public async Task<Result<List<TreatmentResult>>> GetTreatmentsAsync()
     {
-        var treatmentCategorys = await _treatmentRepository.ListAsync();
+        var treatmentCategories = await _treatmentRepository.ListWithTreatmentCategoriesAsync();
 
-        return Result<List<TreatmentResult>>.Success(treatmentCategorys.Select(MapToResult).ToList());
-    }
-
-    private static Address PrepareAddress(AddressModel model)
-    {
-        return new Address(model.Line1, model.Line2, model.PostalCode, model.City, model.StateProvince, model.Country);
+        return Result<List<TreatmentResult>>.Success(treatmentCategories.Select(MapToResult).ToList());
     }
 
     private static TreatmentResult MapToResult(Treatment treatment)
@@ -78,7 +73,9 @@ public class TreatmentManagementService : ITreatmentManagementService
             treatment.Name,
             treatment.Description,
             treatment.Price,
-            treatment.DurationInMinutes
+            treatment.DurationInMinutes,
+            treatment.ProfessionVanityId,
+            treatment.TreatmentCategory.Name
         );
     }
 }

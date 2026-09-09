@@ -4,7 +4,7 @@ public interface ITreatmentCategoryManagementService
 {
     Task<Result<TreatmentCategoryResult>> CreateTreatmentCategoryAsync(CreateTreatmentCategoryModel request);
 
-    Task<Result<TreatmentCategoryResult>> UpdateTreatmentCategoryAsync(UpdateTreatmentCategoryModel request);
+    Task<Result> UpdateTreatmentCategoryAsync(UpdateTreatmentCategoryModel request);
 
     Task DeleteTreatmentCategoryAsync(Guid vanityId);
 

@@ -21,7 +21,7 @@ public class TreatmentCategoryManagementService : ITreatmentCategoryManagementSe
         return Result<TreatmentCategoryResult>.Success(MapToResult(tenant));
     }
 
-    public async Task<Result<TreatmentCategoryResult>> UpdateTreatmentCategoryAsync(UpdateTreatmentCategoryModel model)
+    public async Task<Result> UpdateTreatmentCategoryAsync(UpdateTreatmentCategoryModel model)
     {
         var tenant = await _repository.GetByVanityIdAsync(model.VanityId) ?? throw new NotFoundException("TreatmentCategory", model.VanityId);
 
@@ -29,7 +29,7 @@ public class TreatmentCategoryManagementService : ITreatmentCategoryManagementSe
         _repository.Update(tenant);
         await _unitOfWork.SaveChangesAsync();
 
-        return Result<TreatmentCategoryResult>.Success(MapToResult(tenant));
+        return Result.Success();
     }
 
     public async Task DeleteTreatmentCategoryAsync(Guid vanityId)

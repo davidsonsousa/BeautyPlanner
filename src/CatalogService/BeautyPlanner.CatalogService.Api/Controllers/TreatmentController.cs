@@ -43,7 +43,7 @@ public class TreatmentController : BaseController
             return BadRequest(new { error = result.Error });
         }
 
-        LogInfo("Treatment updated successfully {TreatmentId}", result.Value!.VanityId);
+        LogInfo("Treatment updated successfully {TreatmentId}", request.VanityId);
 
         return NoContent();
     }

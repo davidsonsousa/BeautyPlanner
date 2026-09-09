@@ -25,7 +25,7 @@ public class AvailabilityPeriodController : BaseController
             return BadRequest(new { error = result.Error });
         }
 
-        LogInfo("AvailabilityPeriod updated successfully {AvailabilityPeriodId}", result.Value!.VanityId);
+        LogInfo("AvailabilityPeriod updated successfully {AvailabilityPeriodId}", request.VanityId);
 
         return NoContent();
     }

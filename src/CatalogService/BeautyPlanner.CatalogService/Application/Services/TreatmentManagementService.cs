@@ -25,7 +25,7 @@ public class TreatmentManagementService : ITreatmentManagementService
         return Result<TreatmentResult>.Success(MapToResult(treatment));
     }
 
-    public async Task<Result<TreatmentResult>> UpdateTreatmentAsync(UpdateTreatmentModel model)
+    public async Task<Result> UpdateTreatmentAsync(UpdateTreatmentModel model)
     {
         var treatment = await _treatmentRepository.GetByVanityIdAsync(model.VanityId) ?? throw new NotFoundException("Treatment", model.VanityId);
 
@@ -33,7 +33,7 @@ public class TreatmentManagementService : ITreatmentManagementService
         _treatmentRepository.Update(treatment);
         await _unitOfWork.SaveChangesAsync();
 
-        return Result<TreatmentResult>.Success(MapToResult(treatment));
+        return Result.Success();
     }
 
     public async Task DeleteTreatmentAsync(Guid vanityId)

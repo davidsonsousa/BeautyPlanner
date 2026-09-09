@@ -45,7 +45,7 @@ public class StaffMemberController : BaseController
             return BadRequest(new { error = result.Error });
         }
 
-        LogInfo("StaffMember updated successfully {StaffMemberId}", result.Value!.VanityId);
+        LogInfo("StaffMember updated successfully {StaffMemberId}", request.VanityId);
 
         return NoContent();
     }

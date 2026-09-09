@@ -26,7 +26,7 @@ public class StaffManagementService : IStaffManagementService
         return Result<StaffMemberResult>.Success(MapToResult(staffMember));
     }
 
-    public async Task<Result<StaffMemberResult>> UpdateStaffMemberAsync(UpdateStaffMemberModel model)
+    public async Task<Result> UpdateStaffMemberAsync(UpdateStaffMemberModel model)
     {
         var profession = await _professionRepository.GetByVanityIdAsync(model.ProfessionId) ?? throw new NotFoundException("Profession", model.ProfessionId);
 
@@ -37,7 +37,7 @@ public class StaffManagementService : IStaffManagementService
         _staffRepository.Update(staffMember);
         await _unitOfWork.SaveChangesAsync();
 
-        return Result<StaffMemberResult>.Success(MapToResult(staffMember));
+        return Result.Success();
     }
 
     public async Task DeleteStaffMemberAsync(Guid vanityId)

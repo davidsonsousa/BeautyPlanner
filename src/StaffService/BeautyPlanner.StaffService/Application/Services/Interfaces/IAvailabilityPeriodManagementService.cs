@@ -4,7 +4,7 @@ public interface IAvailabilityPeriodManagementService
 {
     Task<Result<AvailabilityPeriodResult>> CreateAvailabilityPeriodAsync(CreateAvailabilityPeriodModel request);
 
-    Task<Result<AvailabilityPeriodResult>> UpdateAvailabilityPeriodAsync(UpdateAvailabilityPeriodModel request);
+    Task<Result> UpdateAvailabilityPeriodAsync(UpdateAvailabilityPeriodModel request);
 
     Task DeleteAvailabilityPeriodAsync(Guid vanityId);
 

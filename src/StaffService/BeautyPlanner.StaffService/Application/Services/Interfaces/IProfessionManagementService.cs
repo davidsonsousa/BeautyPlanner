@@ -4,7 +4,7 @@ public interface IProfessionManagementService
 {
     Task<Result<ProfessionResult>> CreateProfessionAsync(CreateProfessionModel request);
 
-    Task<Result<ProfessionResult>> UpdateProfessionAsync(UpdateProfessionModel request);
+    Task<Result> UpdateProfessionAsync(UpdateProfessionModel request);
 
     Task DeleteProfessionAsync(Guid vanityId);
 

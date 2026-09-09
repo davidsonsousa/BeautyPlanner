@@ -25,7 +25,7 @@ public class SalonManagementService : ISalonManagementService
         return Result<SalonResult>.Success(MapToResult(salon));
     }
 
-    public async Task<Result<SalonResult>> UpdateSalonAsync(UpdateSalonModel model)
+    public async Task<Result> UpdateSalonAsync(UpdateSalonModel model)
     {
         var salon = await _salonRepository.GetByVanityIdAsync(model.VanityId) ?? throw new NotFoundException("Salon", model.VanityId);
 
@@ -33,7 +33,7 @@ public class SalonManagementService : ISalonManagementService
         _salonRepository.Update(salon);
         await _unitOfWork.SaveChangesAsync();
 
-        return Result<SalonResult>.Success(MapToResult(salon));
+        return Result.Success();
     }
 
     public async Task DeleteSalonAsync(Guid vanityId)

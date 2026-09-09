@@ -43,7 +43,7 @@ public class TreatmentCategoryController : BaseController
             return BadRequest(new { error = result.Error });
         }
 
-        LogInfo("TreatmentCategory updated successfully {TreatmentCategoryId}", result.Value!.VanityId);
+        LogInfo("TreatmentCategory updated successfully {TreatmentCategoryId}", request.VanityId);
 
         return NoContent();
     }

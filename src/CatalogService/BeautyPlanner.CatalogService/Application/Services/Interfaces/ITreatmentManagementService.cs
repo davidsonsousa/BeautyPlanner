@@ -4,7 +4,7 @@ public interface ITreatmentManagementService
 {
     Task<Result<TreatmentResult>> CreateTreatmentAsync(CreateTreatmentModel request);
 
-    Task<Result<TreatmentResult>> UpdateTreatmentAsync(UpdateTreatmentModel request);
+    Task<Result> UpdateTreatmentAsync(UpdateTreatmentModel request);
 
     Task DeleteTreatmentAsync(Guid vanityId);
 

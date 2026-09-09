@@ -43,7 +43,7 @@ public class ProfessionController : BaseController
             return BadRequest(new { error = result.Error });
         }
 
-        LogInfo("Profession updated successfully {ProfessionId}", result.Value!.VanityId);
+        LogInfo("Profession updated successfully {ProfessionId}", request.VanityId);
 
         return NoContent();
     }

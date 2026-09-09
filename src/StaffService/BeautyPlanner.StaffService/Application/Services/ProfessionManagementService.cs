@@ -21,7 +21,7 @@ public class ProfessionManagementService : IProfessionManagementService
         return Result<ProfessionResult>.Success(MapToResult(tenant));
     }
 
-    public async Task<Result<ProfessionResult>> UpdateProfessionAsync(UpdateProfessionModel model)
+    public async Task<Result> UpdateProfessionAsync(UpdateProfessionModel model)
     {
         var tenant = await _repository.GetByVanityIdAsync(model.VanityId) ?? throw new NotFoundException("Profession", model.VanityId);
 
@@ -29,7 +29,7 @@ public class ProfessionManagementService : IProfessionManagementService
         _repository.Update(tenant);
         await _unitOfWork.SaveChangesAsync();
 
-        return Result<ProfessionResult>.Success(MapToResult(tenant));
+        return Result.Success();
     }
 
     public async Task DeleteProfessionAsync(Guid vanityId)

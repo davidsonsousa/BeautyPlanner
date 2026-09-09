@@ -4,7 +4,7 @@ public interface ITenantManagementService
 {
     Task<Result<TenantResult>> CreateTenantAsync(CreateTenantModel request);
 
-    Task<Result<TenantResult>> UpdateTenantAsync(UpdateTenantModel request);
+    Task<Result> UpdateTenantAsync(UpdateTenantModel request);
 
     Task DeleteTenantAsync(Guid vanityId);
 

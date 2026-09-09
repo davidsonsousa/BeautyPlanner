@@ -4,7 +4,7 @@ public interface IClientManagementService
 {
     Task<Result<ClientResult>> CreateClientAsync(CreateClientModel request);
 
-    Task<Result<ClientResult>> UpdateClientAsync(UpdateClientModel request);
+    Task<Result> UpdateClientAsync(UpdateClientModel request);
 
     Task DeleteClientAsync(Guid vanityId);
 

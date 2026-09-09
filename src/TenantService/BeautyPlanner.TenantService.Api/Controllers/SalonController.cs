@@ -43,7 +43,7 @@ public class SalonController : BaseController
             return BadRequest(new { error = result.Error });
         }
 
-        LogInfo("Salon updated successfully {SalonId}", result.Value!.VanityId);
+        LogInfo("Salon updated successfully {SalonId}", request.VanityId);
 
         return NoContent();
     }

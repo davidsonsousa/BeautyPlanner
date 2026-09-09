@@ -25,7 +25,7 @@ public class AvailabilityPeriodManagementService : IAvailabilityPeriodManagement
         return Result<AvailabilityPeriodResult>.Success(MapToResult(availabilityPeriod));
     }
 
-    public async Task<Result<AvailabilityPeriodResult>> UpdateAvailabilityPeriodAsync(UpdateAvailabilityPeriodModel model)
+    public async Task<Result> UpdateAvailabilityPeriodAsync(UpdateAvailabilityPeriodModel model)
     {
         var availabilityPeriod = await _repository.GetByVanityIdAsync(model.VanityId) ?? throw new NotFoundException("AvailabilityPeriod", model.VanityId);
 
@@ -33,7 +33,7 @@ public class AvailabilityPeriodManagementService : IAvailabilityPeriodManagement
         _repository.Update(availabilityPeriod);
         await _unitOfWork.SaveChangesAsync();
 
-        return Result<AvailabilityPeriodResult>.Success(MapToResult(availabilityPeriod));
+        return Result.Success();
     }
 
     public async Task DeleteAvailabilityPeriodAsync(Guid vanityId)

@@ -4,7 +4,7 @@ public interface IStaffManagementService
 {
     Task<Result<StaffMemberResult>> CreateStaffMemberAsync(CreateStaffMemberModel request);
 
-    Task<Result<StaffMemberResult>> UpdateStaffMemberAsync(UpdateStaffMemberModel request);
+    Task<Result> UpdateStaffMemberAsync(UpdateStaffMemberModel request);
 
     Task DeleteStaffMemberAsync(Guid vanityId);
 

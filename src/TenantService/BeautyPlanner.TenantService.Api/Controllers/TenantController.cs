@@ -43,7 +43,7 @@ public class TenantController : BaseController
             return BadRequest(new { error = result.Error });
         }
 
-        LogInfo("Tenant updated successfully {TenantId}", result.Value!.VanityId);
+        LogInfo("Tenant updated successfully {TenantId}", request.VanityId);
 
         return NoContent();
     }

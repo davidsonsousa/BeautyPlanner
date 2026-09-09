@@ -21,7 +21,7 @@ public class TenantManagementService : ITenantManagementService
         return Result<TenantResult>.Success(MapToResult(tenant));
     }
 
-    public async Task<Result<TenantResult>> UpdateTenantAsync(UpdateTenantModel model)
+    public async Task<Result> UpdateTenantAsync(UpdateTenantModel model)
     {
         var tenant = await _repository.GetByVanityIdAsync(model.VanityId) ?? throw new NotFoundException("Tenant", model.VanityId);
 
@@ -29,7 +29,7 @@ public class TenantManagementService : ITenantManagementService
         _repository.Update(tenant);
         await _unitOfWork.SaveChangesAsync();
 
-        return Result<TenantResult>.Success(MapToResult(tenant));
+        return Result.Success();
     }
 
     public async Task DeleteTenantAsync(Guid vanityId)

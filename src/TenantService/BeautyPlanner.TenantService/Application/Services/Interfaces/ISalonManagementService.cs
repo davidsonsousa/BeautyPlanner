@@ -4,7 +4,7 @@ public interface ISalonManagementService
 {
     Task<Result<SalonResult>> CreateSalonAsync(CreateSalonModel request);
 
-    Task<Result<SalonResult>> UpdateSalonAsync(UpdateSalonModel request);
+    Task<Result> UpdateSalonAsync(UpdateSalonModel request);
 
     Task DeleteSalonAsync(Guid vanityId);
 

@@ -43,7 +43,7 @@ public class ClientController : BaseController
             return BadRequest(new { error = result.Error });
         }
 
-        LogInfo("Client updated successfully {ClientId}", result.Value!.VanityId);
+        LogInfo("Client updated successfully {ClientId}", request.VanityId);
 
         return NoContent();
     }

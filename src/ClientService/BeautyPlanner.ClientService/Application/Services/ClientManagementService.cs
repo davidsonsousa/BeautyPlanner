@@ -21,7 +21,7 @@ public class ClientManagementService : IClientManagementService
         return Result<ClientResult>.Success(MapToResult(client));
     }
 
-    public async Task<Result<ClientResult>> UpdateClientAsync(UpdateClientModel model)
+    public async Task<Result> UpdateClientAsync(UpdateClientModel model)
     {
         var client = await _repository.GetByVanityIdAsync(model.VanityId) ?? throw new NotFoundException("Client", model.VanityId);
 
@@ -29,7 +29,7 @@ public class ClientManagementService : IClientManagementService
         _repository.Update(client);
         await _unitOfWork.SaveChangesAsync();
 
-        return Result<ClientResult>.Success(MapToResult(client));
+        return Result.Success();
     }
 
     public async Task DeleteClientAsync(Guid vanityId)

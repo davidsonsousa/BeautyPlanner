@@ -1,0 +1,17 @@
+﻿global using System.Linq.Expressions;
+global using BeautyPlanner.BookingService.Application.Models;
+global using BeautyPlanner.BookingService.Application.Interfaces;
+global using BeautyPlanner.BookingService.Application.Services.Interfaces;
+global using BeautyPlanner.BookingService.Domain.Entities;
+global using BeautyPlanner.Shared.Application.Models;
+global using BeautyPlanner.Shared.Common;
+global using BeautyPlanner.Shared.Domain.Common;
+global using BeautyPlanner.Shared.Domain.Enums;
+global using BeautyPlanner.Shared.Exceptions;
+global using BeautyPlanner.Shared.Infrastructure.Persistence;
+global using BeautyPlanner.Shared.Infrastructure.Persistence.Helpers;
+global using BeautyPlanner.Shared.Interfaces;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.EntityFrameworkCore.Metadata.Builders;
+global using BeautyPlanner.BookingService.Infrastructure.Persistence;
+global using BeautyPlanner.BookingService.Domain.ValueObjects;

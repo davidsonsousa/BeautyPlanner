@@ -18,6 +18,10 @@
     <File Path=".github/workflows/tenant-service/preview.yml" />
     <File Path=".github/workflows/tenant-service/release.yml" />
   </Folder>
+  <Folder Name="/BookingService/">
+    <Project Path="src/BookingService/BeautyPlanner.BookingService.Api/BeautyPlanner.BookingService.Api.csproj" Id="3292c28d-4d1b-4828-a72a-76e20bff5044" />
+    <Project Path="src/BookingService/BeautyPlanner.BookingService/BeautyPlanner.BookingService.csproj" Id="bd506c65-b19c-448f-9f07-6ade9a34b636" />
+  </Folder>
   <Folder Name="/CatalogService/">
     <Project Path="src/CatalogService/BeautyPlanner.CatalogService.Api/BeautyPlanner.CatalogService.Api.csproj" Id="995e381f-b21c-4cf9-b845-f68de96a3886" />
     <Project Path="src/CatalogService/BeautyPlanner.CatalogService/BeautyPlanner.CatalogService.csproj" Id="11025640-1403-47de-a276-ba61aa05aaf1" />
@@ -34,6 +38,5 @@
     <Project Path="src/TenantService/BeautyPlanner.TenantService.Api/BeautyPlanner.TenantService.Api.csproj" Id="ad24655b-59dd-4105-a2df-59e1be927c91" />
     <Project Path="src/TenantService/BeautyPlanner.TenantService/BeautyPlanner.TenantService.csproj" Id="c2ea27f5-d390-4bdf-b0de-3411f934b8e0" />
   </Folder>
-  <Project Path="src/BeautyPlanner.Domain/BeautyPlanner.Domain.csproj" />
   <Project Path="src/BeautyPlanner.Shared/BeautyPlanner.Shared.csproj" Id="9f494612-0cd2-4ce1-83f1-11264b5da5fe" />
 </Solution>

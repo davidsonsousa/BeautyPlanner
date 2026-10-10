@@ -19,6 +19,7 @@
     <File Path=".github/workflows/tenant-service/release.yml" />
   </Folder>
   <Folder Name="/BookingService/">
+    <Project Path="src/BookingService/BeautyPlanner.BookingService.Api/BeautyPlanner.BookingService.Api.csproj" Id="3292c28d-4d1b-4828-a72a-76e20bff5044" />
     <Project Path="src/BookingService/BeautyPlanner.BookingService/BeautyPlanner.BookingService.csproj" Id="bd506c65-b19c-448f-9f07-6ade9a34b636" />
   </Folder>
   <Folder Name="/CatalogService/">

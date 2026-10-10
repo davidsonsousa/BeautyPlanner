@@ -4,15 +4,35 @@ public class AppointmentManagementService : IAppointmentManagementService
 {
     private readonly IAppointmentRepository _appointmentRepository;
     private readonly IUnitOfWork _unitOfWork;
+    private readonly IApiLookupService _apiLookupService;
 
-    public AppointmentManagementService(IAppointmentRepository repository, IUnitOfWork unitOfWork)
+    public AppointmentManagementService(IAppointmentRepository repository, IUnitOfWork unitOfWork, IApiLookupService apiLookupService)
     {
         _appointmentRepository = repository;
         _unitOfWork = unitOfWork;
+        _apiLookupService = apiLookupService;
     }
 
     public async Task<Result<AppointmentResult>> CreateAppointmentAsync(CreateAppointmentModel model)
     {
+        var client = await _apiLookupService.GetClientAsync(model.ClientId);
+        if (client is null)
+        {
+            return Result<AppointmentResult>.Failure("Client does not exist");
+        }
+
+        var staffMember = await _apiLookupService.GetStaffMemberAsync(model.StaffMemberId);
+        if (staffMember is null)
+        {
+            return Result<AppointmentResult>.Failure("Staff member does not exist");
+        }
+
+        var treatment = await _apiLookupService.GetTreatmentAsync(model.TreatmentId);
+        if (treatment is null)
+        {
+            return Result<AppointmentResult>.Failure("Treatment does not exist");
+        }
+
         var appointment = new Appointment(model.Period, model.ClientId, model.StaffMemberId, model.TreatmentId, model.SalonId);
 
         await _appointmentRepository.AddAsync(appointment);

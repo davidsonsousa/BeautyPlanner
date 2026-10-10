@@ -18,9 +18,9 @@ public class TimeRange
         EndTime = endTime;
     }
 
-    public DateTime StartTime { get; }
+    public DateTime StartTime { get; init; }
 
-    public DateTime EndTime { get; }
+    public DateTime EndTime { get; init;  }
 
     public TimeSpan Duration
     {

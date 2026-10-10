@@ -8,9 +8,6 @@ public class AppointmentConfiguration : IEntityTypeConfiguration<Appointment>
         b.HasKey(model => model.Id);
 
         // Properties
-        b.Property(model => model.Period)
-            .IsRequired();
-
         b.Property(model => model.Status)
             .IsRequired();
 

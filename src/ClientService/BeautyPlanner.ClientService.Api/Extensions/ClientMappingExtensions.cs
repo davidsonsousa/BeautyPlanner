@@ -23,4 +23,9 @@ public static class ClientMappingExtension
     {
         return result!.Select(ToResponse).ToList();
     }
+
+    public static ClientLookupResponse ToLookupResponse(this ClientResult? result)
+    {
+        return new ClientLookupResponse(result!.VanityId, result.FirstName, result.LastName);
+    }
 }

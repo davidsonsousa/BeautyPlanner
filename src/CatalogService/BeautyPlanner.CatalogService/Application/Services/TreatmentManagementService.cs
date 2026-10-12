@@ -75,7 +75,8 @@ public class TreatmentManagementService : ITreatmentManagementService
             treatment.Price,
             treatment.DurationInMinutes,
             treatment.ProfessionVanityId,
-            treatment.TreatmentCategory.Name
+            treatment.TreatmentCategory.Name,
+            treatment.SalonVanityId
         );
     }
 }

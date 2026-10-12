@@ -17,11 +17,16 @@ public static class TreatmentMappingExtension
     public static TreatmentResponse ToResponse(this TreatmentResult? result)
     {
         return new TreatmentResponse(result!.Id, result.VanityId, result.Name, result.Description, result.Price, result.DurationInMinutes,
-                                     result.ProfessionId, result.TreatmentCategory);
+                                     result.ProfessionId, result.TreatmentCategory, result.SalonId);
     }
 
     public static List<TreatmentResponse> ToResponse(this List<TreatmentResult>? result)
     {
         return result!.Select(ToResponse).ToList();
+    }
+
+    public static TreatmentLookupResponse ToLookupResponse(this TreatmentResult? result)
+    {
+        return new TreatmentLookupResponse(result!.VanityId, result.Name, result.DurationInMinutes, result.ProfessionId, result.SalonId);
     }
 }

@@ -33,6 +33,30 @@ public class AppointmentManagementService : IAppointmentManagementService
             return Result<AppointmentResult>.Failure("Treatment does not exist");
         }
 
+        // profession validation
+        if (staffMember.ProfessionId != treatment.ProfessionId)
+        {
+            return Result<AppointmentResult>.Failure("Staff member cannot perform the treatment");
+        }
+
+        // salon can perform the treatment
+        if (treatment.SalonId != model.SalonId)
+        {
+            return Result<AppointmentResult>.Failure("Salon cannot perform the treatment");
+        }
+
+        // staff available
+        if (!IsStaffAvailable(staffMember, model.Period))
+        {
+            return Result<AppointmentResult>.Failure($"Staff not available at selected period ({model.Period})");
+        }
+
+        // overlapping appointments
+
+
+        // treatment period
+
+
         var appointment = new Appointment(model.Period, model.ClientId, model.StaffMemberId, model.TreatmentId, model.SalonId);
 
         await _appointmentRepository.AddAsync(appointment);
@@ -126,5 +150,14 @@ public class AppointmentManagementService : IAppointmentManagementService
     private async Task<Appointment> GetAppointmentOrThrowAsync(Guid vanityId)
     {
         return await _appointmentRepository.GetByVanityIdAsync(vanityId) ?? throw new NotFoundException("Appointment", vanityId);
+    }
+
+    private static bool IsStaffAvailable(StaffLookupResult staffMember, TimeRange requestedPeriod)
+    {
+        var requestDay = requestedPeriod.StartTime.DayOfWeek;
+
+        return staffMember.AvailabilityPeriods.Any(ap => ap.DayOfWeek == requestDay
+                                                         && requestedPeriod.StartTime.TimeOfDay >= ap.StartTime
+                                                         && requestedPeriod.EndTime.TimeOfDay <= ap.EndTime);
     }
 }

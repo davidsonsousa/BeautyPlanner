@@ -6,6 +6,7 @@ global using BeautyPlanner.Shared.Exceptions;
 global using BeautyPlanner.Shared.Infrastructure.Persistence;
 global using BeautyPlanner.Shared.Infrastructure.Persistence.Helpers;
 global using BeautyPlanner.Shared.Interfaces;
+global using BeautyPlanner.StaffService.Application.Extensions;
 global using BeautyPlanner.StaffService.Application.Interfaces;
 global using BeautyPlanner.StaffService.Application.Models;
 global using BeautyPlanner.StaffService.Application.Services.Interfaces;

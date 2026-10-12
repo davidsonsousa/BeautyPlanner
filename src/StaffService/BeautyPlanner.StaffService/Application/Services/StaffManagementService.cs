@@ -23,7 +23,7 @@ public class StaffManagementService : IStaffManagementService
         await _staffRepository.AddAsync(staffMember);
         await _unitOfWork.SaveChangesAsync();
 
-        return Result<StaffMemberResult>.Success(MapToResult(staffMember));
+        return Result<StaffMemberResult>.Success(staffMember.ToResult());
     }
 
     public async Task<Result> UpdateStaffMemberAsync(UpdateStaffMemberModel model)
@@ -52,43 +52,32 @@ public class StaffManagementService : IStaffManagementService
     {
         var staffMember = await _staffRepository.GetByIdAsync(id) ?? throw new NotFoundException("StaffMember", id);
 
-        return Result<StaffMemberResult>.Success(MapToResult(staffMember));
+        return Result<StaffMemberResult>.Success(staffMember.ToResult());
     }
 
     public async Task<Result<StaffMemberResult>> GetStaffMemberAsync(Guid vanityId)
     {
         var staffMember = await _staffRepository.GetByVanityIdAsync(vanityId) ?? throw new NotFoundException("StaffMember", vanityId);
 
-        return Result<StaffMemberResult>.Success(MapToResult(staffMember));
+        return Result<StaffMemberResult>.Success(staffMember.ToResult());
+    }
+
+    public async Task<Result<StaffMemberResult>> GetStaffMemberWithAvailabilityPeriodsAsync(Guid vanityId)
+    {
+        var staffMember = await _staffRepository.GetByVanityIdWithAvailabilityPeriodsAsync(vanityId) ?? throw new NotFoundException("StaffMember", vanityId);
+
+        return Result<StaffMemberResult>.Success(staffMember.ToResult());
     }
 
     public async Task<Result<List<StaffMemberResult>>> GetStaffMembersAsync()
     {
         var staffMembers = await _staffRepository.ListWithProfessionAsync();
 
-        return Result<List<StaffMemberResult>>.Success(staffMembers.Select(MapToResult).ToList());
+        return Result<List<StaffMemberResult>>.Success(staffMembers.ToResult());
     }
 
     private static Address PrepareAddress(AddressModel model)
     {
         return new Address(model.Line1, model.Line2, model.PostalCode, model.City, model.StateProvince, model.Country);
-    }
-
-    private static StaffMemberResult MapToResult(StaffMember staffMember)
-    {
-        var address = new AddressModel(staffMember.Address.Line1, staffMember.Address.Line2, staffMember.Address.PostalCode,
-                                       staffMember.Address.City, staffMember.Address.StateProvince, staffMember.Address.Country);
-
-        return new StaffMemberResult(
-            staffMember.Id,
-            staffMember.VanityId,
-            staffMember.FirstName,
-            staffMember.LastName,
-            staffMember.Email,
-            staffMember.PhoneNumber,
-            staffMember.Profession.Name,
-            staffMember.DateOfBirth,
-            address
-        );
     }
 }

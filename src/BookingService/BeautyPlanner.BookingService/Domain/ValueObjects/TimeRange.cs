@@ -29,4 +29,9 @@ public class TimeRange
             return EndTime - StartTime;
         }
     }
+
+    public override string ToString()
+    {
+        return $"{StartTime:d} from {StartTime:t} to {EndTime:t}";
+    }
 }

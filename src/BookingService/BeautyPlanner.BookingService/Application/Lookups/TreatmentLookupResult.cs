@@ -4,5 +4,7 @@ public record TreatmentLookupResult(
     Guid VanityId,
     string Name,
     decimal Price,
-    int DurationInMinutes
+    int DurationInMinutes,
+    Guid ProfessionId,
+    Guid SalonId
 );

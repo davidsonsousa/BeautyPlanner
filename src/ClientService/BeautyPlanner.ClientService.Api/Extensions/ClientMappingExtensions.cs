@@ -1,6 +1,4 @@
-﻿using Azure.Core;
-
-namespace BeautyPlanner.ClientService.Api.Extensions;
+﻿namespace BeautyPlanner.ClientService.Api.Extensions;
 
 public static class ClientMappingExtension
 {

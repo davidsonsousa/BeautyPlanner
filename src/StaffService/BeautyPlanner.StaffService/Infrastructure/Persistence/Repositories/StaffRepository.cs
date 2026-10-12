@@ -17,6 +17,14 @@ public class StaffRepository : Repository<StaffMember>, IStaffRepository
         return await GetValidRecords().Where(x => x.VanityId == id).Include(sm => sm.Profession).FirstOrDefaultAsync();
     }
 
+    public async Task<StaffMember?> GetByVanityIdWithAvailabilityPeriodsAsync(Guid id)
+    {
+        return await GetValidRecords().Where(x => x.VanityId == id)
+                                      .Include(sm => sm.AvailabilityPeriods)
+                                      .Include(sm => sm.Profession)
+                                      .FirstOrDefaultAsync();
+    }
+
     public async Task<List<StaffMember>> ListWithProfessionAsync(Expression<Func<StaffMember, bool>>? filter = null)
     {
         var records = GetValidRecords();

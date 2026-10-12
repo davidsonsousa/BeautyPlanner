@@ -86,6 +86,24 @@ public class StaffMemberController : BaseController
         return Ok(result.Value.ToResponse());
     }
 
+    [HttpGet("{id:guid}/lookup")]
+    public async Task<IActionResult> GetStaffMemberLookup(Guid id)
+    {
+        LogInfo("GetStaffMember called with {id}", id);
+
+        var result = await _staffService.GetStaffMemberWithAvailabilityPeriodsAsync(id);
+
+        if (!result.IsSuccess)
+        {
+            LogWarning("GetStaffMember failed: {Error}", result.Error);
+            return NotFound(new { error = result.Error });
+        }
+
+        LogInfo("StaffMember retrieved successfully {StaffMemberId}", result.Value!.VanityId);
+
+        return Ok(result.Value.ToLookupResponse());
+    }
+
     [HttpDelete("{id:guid}")]
     public async Task<IActionResult> DeleteStaffMember(Guid id)
     {

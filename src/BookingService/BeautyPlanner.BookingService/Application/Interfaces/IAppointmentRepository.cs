@@ -2,5 +2,5 @@
 
 public interface IAppointmentRepository : IRepository<Appointment>
 {
-
+    Task<Appointment?> GetAppointmentByPeriodAsync(TimeRange timeRange);
 }

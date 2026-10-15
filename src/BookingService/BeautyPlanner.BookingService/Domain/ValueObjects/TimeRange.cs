@@ -30,6 +30,11 @@ public class TimeRange
         }
     }
 
+    public bool Overlaps(TimeRange other)
+    {
+        return StartTime < other.EndTime && EndTime > other.StartTime;
+    }
+
     public override string ToString()
     {
         return $"{StartTime:d} from {StartTime:t} to {EndTime:t}";

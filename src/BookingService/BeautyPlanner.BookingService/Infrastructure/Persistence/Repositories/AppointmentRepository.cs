@@ -5,4 +5,9 @@ public class AppointmentRepository : Repository<Appointment>, IAppointmentReposi
     public AppointmentRepository(BookingDbContext dbContext) : base(dbContext)
     {
     }
+
+    public async Task<Appointment?> GetAppointmentByPeriodAsync(TimeRange timeRange)
+    {
+        return await GetValidRecords().Where(x => x.Period.Overlaps(timeRange)).FirstOrDefaultAsync();
+    }
 }

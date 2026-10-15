@@ -52,10 +52,17 @@ public class AppointmentManagementService : IAppointmentManagementService
         }
 
         // overlapping appointments
-
+        var conflictAppointment = _appointmentRepository.GetAppointmentByPeriodAsync(model.Period);
+        if (conflictAppointment is not null)
+        {
+            return Result<AppointmentResult>.Failure($"The selected time conflicts with an existing appointment ({model.Period})");
+        }
 
         // treatment period
-
+        if (model.Period.Duration.TotalMinutes != treatment.DurationInMinutes)
+        {
+            return Result<AppointmentResult>.Failure($"The appointment duration does not match the treatment");
+        }
 
         var appointment = new Appointment(model.Period, model.ClientId, model.StaffMemberId, model.TreatmentId, model.SalonId);
 

@@ -1,4 +1,6 @@
-﻿namespace BeautyPlanner.CatalogService.Api.Controllers;
+﻿using Azure;
+
+namespace BeautyPlanner.CatalogService.Api.Controllers;
 
 [ApiController]
 [ApiVersion("1.0")]
@@ -51,19 +53,7 @@ public class TreatmentController : BaseController
     [HttpGet("{id:guid}")]
     public async Task<IActionResult> GetTreatment(Guid id)
     {
-        LogInfo("GetTreatment called with {id}", id);
-
-        var result = await _salonService.GetTreatmentAsync(id);
-
-        if (!result.IsSuccess)
-        {
-            LogWarning("GetTreatment failed: {Error}", result.Error);
-            return NotFound(new { error = result.Error });
-        }
-
-        LogInfo("Treatment retrieved successfully {TreatmentId}", result.Value!.VanityId);
-
-        return Ok(result.Value.ToResponse());
+        return await GetTreatmentInternal(id, treatment => treatment.ToResponse());
     }
 
     [HttpGet]
@@ -84,6 +74,12 @@ public class TreatmentController : BaseController
         return Ok(result.Value.ToResponse());
     }
 
+    [HttpGet("{id:guid}/lookup")]
+    public async Task<IActionResult> GetTreatmentLookup(Guid id)
+    {
+        return await GetTreatmentInternal(id, treatment => treatment.ToLookupResponse());
+    }
+
     [HttpDelete("{id:guid}")]
     public async Task<IActionResult> DeleteTreatment(Guid id)
     {
@@ -94,5 +90,22 @@ public class TreatmentController : BaseController
         LogInfo("Treatment deleted successfully {id}", id);
 
         return NoContent();
+    }
+
+    private async Task<IActionResult> GetTreatmentInternal<TResponse>(Guid id, Func<TreatmentResult, TResponse> mapper)
+    {
+        LogInfo("GetTreatment called with {id}", id);
+
+        var result = await _salonService.GetTreatmentAsync(id);
+
+        if (!result.IsSuccess)
+        {
+            LogWarning("GetTreatment failed: {Error}", result.Error);
+            return NotFound(new { error = result.Error });
+        }
+
+        LogInfo("Treatment retrieved successfully {TreatmentId}", result.Value!.VanityId);
+
+        return Ok(mapper(result.Value));
     }
 }

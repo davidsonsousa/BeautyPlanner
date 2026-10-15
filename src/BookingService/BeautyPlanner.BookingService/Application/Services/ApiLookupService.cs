@@ -27,7 +27,7 @@ public class ApiLookupService : IApiLookupService
     private async Task<T?> GetDataAsync<T>(string clientName, Guid vanityId, string resource) where T : class
     {
         var httpClient = _httpClientFactory.CreateClient(clientName);
-        var response = await httpClient.GetAsync($"v1/{resource}/{vanityId}");
+        var response = await httpClient.GetAsync($"v1/{resource}/{vanityId}/lookup");
 
         if (response.StatusCode == HttpStatusCode.NotFound)
         {

@@ -24,4 +24,9 @@ public static class StaffMemberMappingExtension
     {
         return result!.Select(ToResponse).ToList();
     }
+
+    public static StaffMemberLookupResponse ToLookupResponse(this StaffMemberResult? result)
+    {
+        return new StaffMemberLookupResponse(result!.VanityId, result.FirstName, result.LastName, result.ProfessionId, result.AvailabilityPeriods.ToResponse());
+    }
 }

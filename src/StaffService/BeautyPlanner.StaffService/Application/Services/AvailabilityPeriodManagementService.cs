@@ -22,7 +22,7 @@ public class AvailabilityPeriodManagementService : IAvailabilityPeriodManagement
         await _repository.AddAsync(availabilityPeriod);
         await _unitOfWork.SaveChangesAsync();
 
-        return Result<AvailabilityPeriodResult>.Success(MapToResult(availabilityPeriod));
+        return Result<AvailabilityPeriodResult>.Success(availabilityPeriod.ToResult());
     }
 
     public async Task<Result> UpdateAvailabilityPeriodAsync(UpdateAvailabilityPeriodModel model)
@@ -48,37 +48,27 @@ public class AvailabilityPeriodManagementService : IAvailabilityPeriodManagement
     {
         var availabilityPeriod = await _repository.GetByIdAsync(id) ?? throw new NotFoundException("AvailabilityPeriod", id);
 
-        return Result<AvailabilityPeriodResult>.Success(MapToResult(availabilityPeriod));
+        return Result<AvailabilityPeriodResult>.Success(availabilityPeriod.ToResult());
     }
 
     public async Task<Result<AvailabilityPeriodResult>> GetAvailabilityPeriodAsync(Guid vanityId)
     {
         var availabilityPeriod = await _repository.GetByVanityIdAsync(vanityId) ?? throw new NotFoundException("AvailabilityPeriod", vanityId);
 
-        return Result<AvailabilityPeriodResult>.Success(MapToResult(availabilityPeriod));
+        return Result<AvailabilityPeriodResult>.Success(availabilityPeriod.ToResult());
     }
 
     public async Task<Result<List<AvailabilityPeriodResult>>> GetAvailabilityPeriodsAsync()
     {
         var availabilityPeriods = await _repository.ListAsync();
 
-        return Result<List<AvailabilityPeriodResult>>.Success(availabilityPeriods.Select(MapToResult).ToList());
+        return Result<List<AvailabilityPeriodResult>>.Success(availabilityPeriods.ToResult());
     }
 
     public async Task<Result<List<AvailabilityPeriodResult>>> GetAvailabilityPeriodsForStaffMemberAsync(Guid staffMemberId)
     {
         var availabilityPeriods = await _repository.ListForStaffMember(staffMemberId);
 
-        return Result<List<AvailabilityPeriodResult>>.Success(availabilityPeriods.Select(MapToResult).ToList());
-    }
-
-    private static AvailabilityPeriodResult MapToResult(AvailabilityPeriod availabilityPeriod)
-    {
-        return new AvailabilityPeriodResult(
-            availabilityPeriod.Id,
-            availabilityPeriod.VanityId,
-            availabilityPeriod.DayOfWeek,
-            availabilityPeriod.StartTime,
-            availabilityPeriod.EndTime);
+        return Result<List<AvailabilityPeriodResult>>.Success(availabilityPeriods.ToResult());
     }
 }

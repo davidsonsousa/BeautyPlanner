@@ -1,4 +1,8 @@
-﻿global using BeautyPlanner.Shared.Domain.Common;
+﻿global using System.ComponentModel.DataAnnotations.Schema;
+global using System.Diagnostics;
+global using System.Linq.Expressions;
+global using BeautyPlanner.Shared.Application.Models;
+global using BeautyPlanner.Shared.Domain.Common;
 global using BeautyPlanner.Shared.Exceptions;
 global using BeautyPlanner.Shared.Infrastructure.Middleware;
 global using BeautyPlanner.Shared.Interfaces;
@@ -8,6 +12,3 @@ global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.EntityFrameworkCore.Metadata.Builders;
 global using Microsoft.Extensions.Logging;
-global using System.ComponentModel.DataAnnotations.Schema;
-global using System.Diagnostics;
-global using System.Linq.Expressions;

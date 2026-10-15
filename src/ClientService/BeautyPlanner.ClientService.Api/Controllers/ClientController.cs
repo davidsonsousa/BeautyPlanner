@@ -51,19 +51,7 @@ public class ClientController : BaseController
     [HttpGet("{id:guid}")]
     public async Task<IActionResult> GetClient(Guid id)
     {
-        LogInfo("GetClient called with {id}", id);
-
-        var result = await _clientService.GetClientAsync(id);
-
-        if (!result.IsSuccess)
-        {
-            LogWarning("GetClient failed: {Error}", result.Error);
-            return NotFound(new { error = result.Error });
-        }
-
-        LogInfo("Client retrieved successfully {ClientId}", result.Value!.VanityId);
-
-        return Ok(result.Value.ToResponse());
+        return await GetClientInternal(id, client => client.ToResponse());
     }
 
     [HttpGet]
@@ -84,6 +72,12 @@ public class ClientController : BaseController
         return Ok(result.Value.ToResponse());
     }
 
+    [HttpGet("{id:guid}/lookup")]
+    public async Task<IActionResult> GetClientLookup(Guid id)
+    {
+        return await GetClientInternal(id, client => client.ToLookupResponse());
+    }
+
     [HttpDelete("{id:guid}")]
     public async Task<IActionResult> DeleteClient(Guid id)
     {
@@ -94,5 +88,23 @@ public class ClientController : BaseController
         LogInfo("Client deleted successfully {id}", id);
 
         return NoContent();
+    }
+
+    private async Task<IActionResult> GetClientInternal<TResponse>(Guid id, Func<ClientResult, TResponse> mapper)
+    {
+        LogInfo("GetClient called with {id}", id);
+
+        var result = await _clientService.GetClientAsync(id);
+
+        if (!result.IsSuccess)
+        {
+            LogWarning("GetClient failed: {Error}", result.Error);
+
+            return NotFound(new { error = result.Error });
+        }
+
+        LogInfo("Client retrieved successfully {ClientId}", result.Value!.VanityId);
+
+        return Ok(mapper(result.Value));
     }
 }

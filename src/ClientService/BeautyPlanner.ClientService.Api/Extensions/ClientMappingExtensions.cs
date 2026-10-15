@@ -1,6 +1,4 @@
-﻿using Azure.Core;
-
-namespace BeautyPlanner.ClientService.Api.Extensions;
+﻿namespace BeautyPlanner.ClientService.Api.Extensions;
 
 public static class ClientMappingExtension
 {
@@ -22,5 +20,10 @@ public static class ClientMappingExtension
     public static List<ClientResponse> ToResponse(this List<ClientResult>? result)
     {
         return result!.Select(ToResponse).ToList();
+    }
+
+    public static ClientLookupResponse ToLookupResponse(this ClientResult? result)
+    {
+        return new ClientLookupResponse(result!.VanityId, result.FirstName, result.LastName);
     }
 }

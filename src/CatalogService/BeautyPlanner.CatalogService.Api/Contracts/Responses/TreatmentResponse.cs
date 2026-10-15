@@ -8,5 +8,6 @@ public record TreatmentResponse(
     decimal Price,
     int DurationInMinutes,
     Guid ProfessionId,
-    string TreatmentCategory
+    string TreatmentCategory,
+    Guid SalonId
 );

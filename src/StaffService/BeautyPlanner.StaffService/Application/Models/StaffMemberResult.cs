@@ -7,7 +7,9 @@ public record StaffMemberResult(
     string LastName,
     string Email,
     string PhoneNumber,
+    Guid ProfessionId,
     string ProfessionName,
     DateTime? DateOfBirth,
-    AddressModel? Address
+    AddressModel? Address,
+    List<AvailabilityPeriodResult>? AvailabilityPeriods
 );

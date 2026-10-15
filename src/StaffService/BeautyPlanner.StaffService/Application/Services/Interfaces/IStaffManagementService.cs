@@ -12,5 +12,7 @@ public interface IStaffManagementService
 
     Task<Result<StaffMemberResult>> GetStaffMemberAsync(Guid vanityId);
 
+    Task<Result<StaffMemberResult>> GetStaffMemberWithAvailabilityPeriodsAsync(Guid vanityId);
+
     Task<Result<List<StaffMemberResult>>> GetStaffMembersAsync();
 }

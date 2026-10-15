@@ -2,5 +2,7 @@
 
 public interface IStaffRepository : IRepository<StaffMember>
 {
+    Task<StaffMember?> GetByVanityIdWithAvailabilityPeriodsAsync(Guid id);
+
     Task<List<StaffMember>> ListWithProfessionAsync(Expression<Func<StaffMember, bool>>? filter = null);
 }

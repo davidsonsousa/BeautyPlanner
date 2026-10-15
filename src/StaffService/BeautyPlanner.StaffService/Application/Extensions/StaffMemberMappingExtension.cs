@@ -4,9 +4,6 @@ public static class StaffMemberMappingExtension
 {
     public static StaffMemberResult ToResult(this StaffMember staffMember)
     {
-        var address = new AddressModel(staffMember.Address.Line1, staffMember.Address.Line2, staffMember.Address.PostalCode,
-                               staffMember.Address.City, staffMember.Address.StateProvince, staffMember.Address.Country);
-
         return new StaffMemberResult(
             staffMember.Id,
             staffMember.VanityId,
@@ -17,7 +14,7 @@ public static class StaffMemberMappingExtension
             staffMember.Profession.VanityId,
             staffMember.Profession.Name,
             staffMember.DateOfBirth,
-            address,
+            staffMember.Address.ToModel(),
             staffMember.AvailabilityPeriods.ToResult()
         );
     }

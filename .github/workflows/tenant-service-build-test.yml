@@ -39,7 +39,7 @@ jobs:
             ${{ runner.os }}-nuget-
 
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore BeautyPlanner.TenantService.slnx
 
       - name: Verify formatting
         run: dotnet format BeautyPlanner.TenantService.slnx --verify-no-changes

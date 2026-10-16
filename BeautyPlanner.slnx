@@ -18,25 +18,28 @@
     <File Path=".github/workflows/tenant-service/preview.yml" />
     <File Path=".github/workflows/tenant-service/release.yml" />
   </Folder>
-  <Folder Name="/BookingService/">
+  <Folder Name="/src/BookingService/">
     <Project Path="src/BookingService/BeautyPlanner.BookingService.Api/BeautyPlanner.BookingService.Api.csproj" Id="3292c28d-4d1b-4828-a72a-76e20bff5044" />
     <Project Path="src/BookingService/BeautyPlanner.BookingService/BeautyPlanner.BookingService.csproj" Id="bd506c65-b19c-448f-9f07-6ade9a34b636" />
   </Folder>
-  <Folder Name="/CatalogService/">
+  <Folder Name="/src/CatalogService/">
     <Project Path="src/CatalogService/BeautyPlanner.CatalogService.Api/BeautyPlanner.CatalogService.Api.csproj" Id="995e381f-b21c-4cf9-b845-f68de96a3886" />
     <Project Path="src/CatalogService/BeautyPlanner.CatalogService/BeautyPlanner.CatalogService.csproj" Id="11025640-1403-47de-a276-ba61aa05aaf1" />
   </Folder>
-  <Folder Name="/ClientService/">
+  <Folder Name="/src/ClientService/">
     <Project Path="src/ClientService/BeautyPlanner.ClientService.Api/BeautyPlanner.ClientService.Api.csproj" Id="26552cf8-c476-4990-921e-81ac38fb209d" />
     <Project Path="src/ClientService/BeautyPlanner.ClientService/BeautyPlanner.ClientService.csproj" Id="f552616a-fcab-46e6-8732-76d62151aa8c" />
   </Folder>
-  <Folder Name="/StaffService/">
+  <Folder Name="/src/StaffService/">
     <Project Path="src/StaffService/BeautyPlanner.StaffService.Api/BeautyPlanner.StaffService.Api.csproj" Id="da243fc2-a1b9-4dc6-8c58-9fffc6a041ae" />
     <Project Path="src/StaffService/BeautyPlanner.StaffService/BeautyPlanner.StaffService.csproj" Id="a8fb7dbf-0b67-4a0b-91fd-e135c32def63" />
   </Folder>
-  <Folder Name="/TenantService/">
+  <Folder Name="/src/TenantService/">
     <Project Path="src/TenantService/BeautyPlanner.TenantService.Api/BeautyPlanner.TenantService.Api.csproj" Id="ad24655b-59dd-4105-a2df-59e1be927c91" />
     <Project Path="src/TenantService/BeautyPlanner.TenantService/BeautyPlanner.TenantService.csproj" Id="c2ea27f5-d390-4bdf-b0de-3411f934b8e0" />
   </Folder>
-  <Project Path="src/BeautyPlanner.Shared/BeautyPlanner.Shared.csproj" Id="9f494612-0cd2-4ce1-83f1-11264b5da5fe" />
+  <Folder Name="/src/">
+    <Project Path="src/BeautyPlanner.Shared/BeautyPlanner.Shared.csproj" Id="9f494612-0cd2-4ce1-83f1-11264b5da5fe" />
+  </Folder>
+  <Folder Name="/tests/" />
 </Solution>

@@ -11,6 +11,8 @@ on:
       - '.gitignore'
       - 'LICENSE'
       - '.editorconfig'
+    paths:
+      - 'src/TenantService/**'
   pull_request:
     branches: [ "develop", "main" ]
 

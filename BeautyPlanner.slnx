@@ -7,14 +7,15 @@
     <File Path="README.md" />
   </Folder>
   <Folder Name="/.solution-files/.github/" />
-  <Folder Name="/.solution-files/.github/workflows/" />
+  <Folder Name="/.solution-files/.github/workflows/">
+    <File Path=".github/workflows/tenant-service-build-test.yml" />
+  </Folder>
   <Folder Name="/.solution-files/.github/workflows/client-service/">
     <File Path=".github/workflows/client-service/build-test.yml" />
     <File Path=".github/workflows/client-service/preview.yml" />
     <File Path=".github/workflows/client-service/release.yml" />
   </Folder>
   <Folder Name="/.solution-files/.github/workflows/tenant-service/">
-    <File Path=".github/workflows/tenant-service/build-test.yml" />
     <File Path=".github/workflows/tenant-service/preview.yml" />
     <File Path=".github/workflows/tenant-service/release.yml" />
   </Folder>

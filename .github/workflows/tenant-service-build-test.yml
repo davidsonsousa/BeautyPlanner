@@ -49,7 +49,7 @@ jobs:
       - name: Verify formatting
         run: dotnet format --verify-no-changes --verbosity diagnostic
 
-        - name: Build
+      - name: Build
         run: dotnet build --configuration Release --no-restore /p:ContinuousIntegrationBuild=true
 
       # - name: Test with coverage

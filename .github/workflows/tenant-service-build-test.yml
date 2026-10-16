@@ -16,8 +16,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build-test:
-    name: Build and test
+  build:
+    name: Build
     runs-on: ubuntu-latest
 
     steps:
@@ -42,25 +42,28 @@ jobs:
         run: dotnet restore
 
       - name: Verify formatting
-        run: dotnet format --verify-no-changes --verbosity diagnostic
+        run: dotnet format BeautyPlanner.TenantService.slnx --verify-no-changes
 
       - name: Build
-        run: dotnet build --configuration Release --no-restore /p:ContinuousIntegrationBuild=true
+        run: dotnet build BeautyPlanner.TenantService.slnx --configuration Release --no-restore /p:ContinuousIntegrationBuild=true
 
-      # - name: Test with coverage
-      #   run: dotnet test --configuration Release --no-build --verbosity normal --collect:"XPlat Code Coverage"
+  # test: (needs to complete configuration)
+  #   name: Test
+  #   runs-on: ubuntu-latest
+  #     - name: test with coverage
+  #       run: dotnet test --configuration release --no-build --verbosity normal --collect:"xplat code coverage"
 
-      # - name: Generate coverage report
-      #   uses: danielpalme/ReportGenerator-GitHub-Action@5.5.10
-      #   if: always()
-      #   with:
-      #     reports: '**/coverage.cobertura.xml'
-      #     targetdir: 'coveragereport'
+  #     - name: generate coverage report
+  #       uses: danielpalme/reportgenerator-github-action@5.5.10
+  #       if: always()
+  #       with:
+  #         reports: '**/coverage.cobertura.xml'
+  #         targetdir: 'coveragereport'
 
-      # - name: Upload coverage report
-      #   uses: actions/upload-artifact@v7.0.1
-      #   if: always()
-      #   with:
-      #     name: coverage-report
-      #     path: coveragereport
-      #     retention-days: 7
+  #     - name: upload coverage report
+  #       uses: actions/upload-artifact@v7.0.1
+  #       if: always()
+  #       with:
+  #         name: coverage-report
+  #         path: coveragereport
+  #         retention-days: 7

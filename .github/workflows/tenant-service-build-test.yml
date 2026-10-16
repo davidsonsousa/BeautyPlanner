@@ -5,14 +5,9 @@ on:
 
   push:
     branches: [ "feature/**", "develop" ]
-    paths-ignore:
-      - '**.md'
-      - 'docs/**'
-      - '.gitignore'
-      - 'LICENSE'
-      - '.editorconfig'
     paths:
       - 'src/TenantService/**'
+      - '.github/workflows/tenant-service-build-test.yml'
   pull_request:
     branches: [ "develop", "main" ]
 

@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="../BeautyPlanner.Shared/BeautyPlanner.Shared.csproj" />
+  <Project Path="BeautyPlanner.CatalogService.Api/BeautyPlanner.CatalogService.Api.csproj" />
+  <Project Path="BeautyPlanner.CatalogService/BeautyPlanner.CatalogService.csproj" />
+</Solution>

@@ -9,7 +9,8 @@
   </Folder>
   <Folder Name="/.solution-files/.github/" />
   <Folder Name="/.solution-files/.github/workflows/">
-    <File Path=".github/workflows/tenant-service-build-test.yml" />
+    <File Path=".github/workflows/tenant-service-ci.yml" />
+    <File Path="client-service-ci.yml" />
   </Folder>
   <Folder Name="/.solution-files/.github/workflows/client-service/">
     <File Path=".github/workflows/client-service/build-test.yml" />

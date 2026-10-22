@@ -26,14 +26,15 @@ builder.Services.TryAddScoped<IStaffManagementService, StaffManagementService>()
 builder.Services.TryAddScoped<IProfessionManagementService, ProfessionManagementService>();
 builder.Services.TryAddScoped<IAvailabilityPeriodManagementService, AvailabilityPeriodManagementService>();
 
+builder.Services.AddControllers();
+
 builder.Services.AddApiVersioning(options =>
 {
     options.DefaultApiVersion = new ApiVersion(1, 0);
-    options.AssumeDefaultVersionWhenUnspecified = true;
     options.ReportApiVersions = true;
-});
+    options.ApiVersionReader = new UrlSegmentApiVersionReader();
+}).AddMvc();
 
-builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 

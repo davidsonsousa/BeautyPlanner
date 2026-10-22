@@ -6,8 +6,10 @@ public abstract class Person : AuditableEntity
 
     public string LastName { get; private set; }
 
-    public string FullName {
-        get {
+    public string FullName
+    {
+        get
+        {
             return $"{FirstName} {LastName}";
         }
     }

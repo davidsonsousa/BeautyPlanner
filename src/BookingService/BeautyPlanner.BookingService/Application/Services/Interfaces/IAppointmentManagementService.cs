@@ -10,7 +10,7 @@ public interface IAppointmentManagementService
 
     Task CancelAppointmentByClientAsync(Guid vanityId);
 
-    Task CancelAppointmentByStaffAsync (Guid vanityId);
+    Task CancelAppointmentByStaffAsync(Guid vanityId);
 
     Task CompleteAppointmentAsync(Guid vanityId);
 

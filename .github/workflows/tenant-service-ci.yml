@@ -1,4 +1,4 @@
-name: Build and Test
+name: Tenant Service CI
 
 on:
   workflow_dispatch:
@@ -8,7 +8,7 @@ on:
     paths:
       - 'src/TenantService/**'
       - 'src/BeautyPlanner.Shared/**'
-      - '.github/workflows/tenant-service-build-test.yml'
+      - '.github/workflows/tenant-service-ci.yml'
   pull_request:
     branches: [ "develop", "main" ]
 

@@ -2,7 +2,7 @@
 
 public class ClientConfiguration : IEntityTypeConfiguration<Client>
 {
-    public void Configure (EntityTypeBuilder<Client> b)
+    public void Configure(EntityTypeBuilder<Client> b)
     {
         // Key
         b.HasKey(model => model.Id);

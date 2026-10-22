@@ -1,9 +1,8 @@
 ﻿global using System.Linq.Expressions;
-global using BeautyPlanner.CatalogService.Application.Models;
 global using BeautyPlanner.CatalogService.Application.Interfaces;
+global using BeautyPlanner.CatalogService.Application.Models;
 global using BeautyPlanner.CatalogService.Application.Services.Interfaces;
 global using BeautyPlanner.CatalogService.Domain.Entities;
-global using BeautyPlanner.Shared.Application.Models;
 global using BeautyPlanner.Shared.Common;
 global using BeautyPlanner.Shared.Domain.Common;
 global using BeautyPlanner.Shared.Exceptions;

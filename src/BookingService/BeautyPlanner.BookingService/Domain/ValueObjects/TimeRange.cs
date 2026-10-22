@@ -20,7 +20,7 @@ public class TimeRange
 
     public DateTime StartTime { get; init; }
 
-    public DateTime EndTime { get; init;  }
+    public DateTime EndTime { get; init; }
 
     public TimeSpan Duration
     {

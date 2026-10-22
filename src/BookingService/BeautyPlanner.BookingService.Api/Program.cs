@@ -56,14 +56,15 @@ builder.Services.TryAddScoped<IApiLookupService, ApiLookupService>();
 builder.Services.TryAddScoped<IAppointmentManagementService, AppointmentManagementService>();
 
 // API
+builder.Services.AddControllers();
+
 builder.Services.AddApiVersioning(options =>
 {
     options.DefaultApiVersion = new ApiVersion(1, 0);
-    options.AssumeDefaultVersionWhenUnspecified = true;
     options.ReportApiVersions = true;
-});
+    options.ApiVersionReader = new UrlSegmentApiVersionReader();
+}).AddMvc();
 
-builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
 var app = builder.Build();

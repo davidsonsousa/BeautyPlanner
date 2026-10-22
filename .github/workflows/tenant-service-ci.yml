@@ -1,0 +1,71 @@
+name: Tenant Service CI
+
+on:
+  workflow_dispatch:
+
+  push:
+    branches: [ "feature/**", "develop" ]
+    paths:
+      - 'src/TenantService/**'
+      - 'src/BeautyPlanner.Shared/**'
+      - '.github/workflows/tenant-service-ci.yml'
+  pull_request:
+    branches: [ "develop", "main" ]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7.0.0
+        with:
+          fetch-depth: 0
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 10.0.402
+
+      - name: Cache NuGet packages
+        uses: actions/cache@v5
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json', '**/Directory.Packages.props') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
+
+      - name: Restore dependencies
+        run: dotnet restore src/TenantService/BeautyPlanner.TenantService.slnx
+
+      - name: Verify formatting
+        run: dotnet format src/TenantService/BeautyPlanner.TenantService.slnx --verify-no-changes
+
+      - name: Build
+        run: dotnet build src/TenantService/BeautyPlanner.TenantService.slnx --configuration Release --no-restore /p:ContinuousIntegrationBuild=true
+
+  # test: (needs to complete configuration)
+  #   name: Test
+  #   runs-on: ubuntu-latest
+  #     - name: test with coverage
+  #       run: dotnet test --configuration release --no-build --verbosity normal --collect:"xplat code coverage"
+
+  #     - name: generate coverage report
+  #       uses: danielpalme/reportgenerator-github-action@5.5.10
+  #       if: always()
+  #       with:
+  #         reports: '**/coverage.cobertura.xml'
+  #         targetdir: 'coveragereport'
+
+  #     - name: upload coverage report
+  #       uses: actions/upload-artifact@v7.0.1
+  #       if: always()
+  #       with:
+  #         name: coverage-report
+  #         path: coveragereport
+  #         retention-days: 7

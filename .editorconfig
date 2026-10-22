@@ -3,6 +3,10 @@
 # You can modify the rules from these initially generated values to suit your own policies
 # You can learn more about editorconfig here: https://docs.microsoft.com/en-us/visualstudio/ide/editorconfig-code-style-settings-reference
 
+# Tells analyzers that migration files are generated code
+[**/Migrations/*.cs]
+generated_code = true
+
 [*.cs]
 
 csharp_style_namespace_declarations = file_scoped:warning
@@ -30,7 +34,7 @@ csharp_new_line_before_members_in_anonymous_types = false
 #require members of object intializers to be on separate lines
 csharp_new_line_before_members_in_object_initializers = true
 #require braces to be on a new line for object_collection_array_initializers, methods, control_blocks, types, and lambdas (also known as "Allman" style)
-csharp_new_line_before_open_brace = object_collection_array_initializers, methods, control_blocks, types, lambdas
+csharp_new_line_before_open_brace = object_collection_array_initializers, methods, control_blocks, types, lambdas, properties, accessors
 
 #Formatting - organize using options
 

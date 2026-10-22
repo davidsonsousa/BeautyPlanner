@@ -1,20 +1,26 @@
 <Solution>
   <Folder Name="/.solution-files/">
     <File Path=".editorconfig" />
+    <File Path=".gitattributes" />
     <File Path=".gitignore" />
     <File Path="global.json" />
     <File Path="LICENSE" />
     <File Path="README.md" />
   </Folder>
   <Folder Name="/.solution-files/.github/" />
-  <Folder Name="/.solution-files/.github/workflows/" />
+  <Folder Name="/.solution-files/.github/workflows/">
+    <File Path=".github/workflows/tenant-service-ci.yml" />
+    <File Path=".github/workflows/client-service-ci.yml" />
+    <File Path=".github/workflows/staff-service-ci.yml" />
+    <File Path=".github/workflows/catalog-service-ci.yml" />
+    <File Path=".github/workflows/booking-service-ci.yml" />
+  </Folder>
   <Folder Name="/.solution-files/.github/workflows/client-service/">
     <File Path=".github/workflows/client-service/build-test.yml" />
     <File Path=".github/workflows/client-service/preview.yml" />
     <File Path=".github/workflows/client-service/release.yml" />
   </Folder>
   <Folder Name="/.solution-files/.github/workflows/tenant-service/">
-    <File Path=".github/workflows/tenant-service/build-test.yml" />
     <File Path=".github/workflows/tenant-service/preview.yml" />
     <File Path=".github/workflows/tenant-service/release.yml" />
   </Folder>

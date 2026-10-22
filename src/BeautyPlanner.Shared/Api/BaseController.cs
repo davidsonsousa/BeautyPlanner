@@ -1,4 +1,4 @@
-﻿namespace BeautyPlanner.Shared.Api;
+namespace BeautyPlanner.Shared.Api;
 
 public abstract class BaseController : ControllerBase
 {

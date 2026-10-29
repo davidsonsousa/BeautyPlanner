@@ -49,7 +49,7 @@ jobs:
         run: dotnet build src/TenantService/BeautyPlanner.TenantService.slnx --configuration Release --no-restore /p:ContinuousIntegrationBuild=true
 
       - name: Test with coverage
-        run: >
+        run: |
           dotnet test tests/BeautyPlanner.TenantService.UnitTests/BeautyPlanner.TenantService.UnitTests.csproj
           --configuration Release
           --no-build

@@ -75,7 +75,7 @@ public class SalonTests
     {
         var salon = new SalonBuilder().Build();
 
-        Assert.Throws<ArgumentNullException>(() => salon.Update("Salon 1", "Description", "salon@email.cz", "456123789",null!));
+        Assert.Throws<ArgumentNullException>(() => salon.Update("Salon 1", "Description", "salon@email.cz", "456123789", null!));
     }
 
     [Fact]

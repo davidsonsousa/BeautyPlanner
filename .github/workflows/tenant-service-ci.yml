@@ -57,11 +57,11 @@ jobs:
           --collect:"XPlat Code Coverage"
 
       - name: Generate coverage report
-        uses: danielpalme/reportgenerator-github-action@5.5.10
-        if: always()
+        uses: danielpalme/ReportGenerator-GitHub-Action@5.5.12
         with:
-          reports: '**/coverage.cobertura.xml'
-          targetdir: 'coveragereport'
+          reports: coverage.cobertura.xml
+          targetdir: coveragereport
+          reporttypes: Cobertura
 
       - name: Upload coverage report
         uses: actions/upload-artifact@v7.0.1

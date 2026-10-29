@@ -43,15 +43,22 @@ jobs:
         run: dotnet restore src/TenantService/BeautyPlanner.TenantService.slnx
 
       - name: Verify formatting
-        run: dotnet format src/TenantService/BeautyPlanner.TenantService.slnx --verify-no-changes
+        run: >
+          dotnet format src/TenantService/BeautyPlanner.TenantService.slnx
+          --verify-no-changes
 
       - name: Build
-        run: dotnet build src/TenantService/BeautyPlanner.TenantService.slnx --configuration Release --no-restore /p:ContinuousIntegrationBuild=true
+        run: >
+          dotnet build src/TenantService/BeautyPlanner.TenantService.slnx
+          --configuration Release
+          --no-restore
+          /p:ContinuousIntegrationBuild=true
 
       - name: Test with coverage
         run: >
-          dotnet test tests/BeautyPlanner.TenantService.UnitTests/BeautyPlanner.TenantService.UnitTests.csproj
+          dotnet test src/TenantService/BeautyPlanner.TenantService.slnx
           --configuration Release
+          --no-build
           --verbosity normal
           --collect:"XPlat Code Coverage"
 

@@ -47,5 +47,7 @@
   <Folder Name="/src/">
     <Project Path="src/BeautyPlanner.Shared/BeautyPlanner.Shared.csproj" Id="9f494612-0cd2-4ce1-83f1-11264b5da5fe" />
   </Folder>
-  <Folder Name="/tests/" />
+  <Folder Name="/tests/">
+    <Project Path="tests/BeautyPlanner.TenantService.UnitTests/BeautyPlanner.TenantService.UnitTests.csproj" Id="8345e7b9-cee6-423e-bc71-96571814febb" />
+  </Folder>
 </Solution>

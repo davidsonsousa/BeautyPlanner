@@ -54,10 +54,7 @@ jobs:
           --configuration Release
           --no-build
           --verbosity normal
-          --collect:"XPlat Code Coverage"
-
-      - name: Find coverage files
-        run: find . -name "coverage.cobertura.xml"
+          --collect:'XPlat Code Coverage'
 
       - name: Generate coverage report
         uses: danielpalme/ReportGenerator-GitHub-Action@5.5.12

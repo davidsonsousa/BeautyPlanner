@@ -19,7 +19,7 @@ concurrency:
 
 jobs:
   tenant-service-ci:
-    name: Tenant Service CI
+    name: Build & Test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7.0.0
@@ -59,7 +59,7 @@ jobs:
       - name: Generate coverage report
         uses: danielpalme/ReportGenerator-GitHub-Action@5.5.12
         with:
-          reports: coverage.cobertura.xml
+          reports: '**/coverage.cobertura.xml'
           targetdir: coveragereport
           reporttypes: Cobertura
 

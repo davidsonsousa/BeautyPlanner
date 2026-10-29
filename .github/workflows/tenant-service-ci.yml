@@ -8,6 +8,7 @@ on:
     paths:
       - 'src/TenantService/**'
       - 'src/BeautyPlanner.Shared/**'
+      - 'tests/BeautyPlanner.TenantService.UnitTests/**'
       - '.github/workflows/tenant-service-ci.yml'
   pull_request:
     branches: [ "develop", "main" ]
@@ -17,11 +18,9 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
-    name: Build
-
+  tenant-service-ci:
+    name: Tenant Service CI
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v7.0.0
         with:
@@ -49,23 +48,25 @@ jobs:
       - name: Build
         run: dotnet build src/TenantService/BeautyPlanner.TenantService.slnx --configuration Release --no-restore /p:ContinuousIntegrationBuild=true
 
-  # test: (needs to complete configuration)
-  #   name: Test
-  #   runs-on: ubuntu-latest
-  #     - name: test with coverage
-  #       run: dotnet test --configuration release --no-build --verbosity normal --collect:"xplat code coverage"
+      - name: Test with coverage
+        run: >
+          dotnet test tests/BeautyPlanner.TenantService.UnitTests/BeautyPlanner.TenantService.UnitTests.csproj
+          --configuration Release
+          --no-build
+          --verbosity normal
+          --collect:"XPlat Code Coverage"
 
-  #     - name: generate coverage report
-  #       uses: danielpalme/reportgenerator-github-action@5.5.10
-  #       if: always()
-  #       with:
-  #         reports: '**/coverage.cobertura.xml'
-  #         targetdir: 'coveragereport'
+      - name: Generate coverage report
+        uses: danielpalme/reportgenerator-github-action@5.5.10
+        if: always()
+        with:
+          reports: '**/coverage.cobertura.xml'
+          targetdir: 'coveragereport'
 
-  #     - name: upload coverage report
-  #       uses: actions/upload-artifact@v7.0.1
-  #       if: always()
-  #       with:
-  #         name: coverage-report
-  #         path: coveragereport
-  #         retention-days: 7
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: coverage-report
+          path: coveragereport
+          retention-days: 7

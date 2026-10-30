@@ -110,7 +110,7 @@ public class TenantManagementServiceTests
         await _sut.DeleteTenantAsync(model.VanityId);
 
         // Assert
-        _repositoryMock.Verify(x => x.Delete(It.Is<Tenant>(t => t.VanityId == model.VanityId)),Times.Once);
+        _repositoryMock.Verify(x => x.Delete(It.Is<Tenant>(t => t.VanityId == model.VanityId)), Times.Once);
         _unitOfWorkMock.Verify(x => x.SaveChangesAsync(), Times.Once);
     }
 

@@ -2,30 +2,35 @@
 
 public class SalonTests
 {
+    [Trait("Category", "Constructor")]
     [Fact]
     public void Constructor_Should_ThrowArgumentNullException_When_NameIsNull()
     {
         Assert.Throws<ArgumentNullException>(() => new SalonBuilder().WithName(null!).Build());
     }
 
+    [Trait("Category", "Constructor")]
     [Fact]
     public void Constructor_Should_ThrowArgumentNullException_When_EmailIsNull()
     {
         Assert.Throws<ArgumentNullException>(() => new SalonBuilder().WithEmail(null!).Build());
     }
 
+    [Trait("Category", "Constructor")]
     [Fact]
     public void Constructor_Should_ThrowArgumentNullException_When_PhoneNumberIsNull()
     {
         Assert.Throws<ArgumentNullException>(() => new SalonBuilder().WithPhoneNumber(null!).Build());
     }
 
+    [Trait("Category", "Constructor")]
     [Fact]
     public void Constructor_Should_ThrowArgumentNullException_When_AddressIsNull()
     {
         Assert.Throws<ArgumentNullException>(() => new SalonBuilder().WithAddress(null!).Build());
     }
 
+    [Trait("Category", "Constructor")]
     [Fact]
     public void Constructor_Should_SetProperties_When_ValidValuesAreProvided()
     {
@@ -43,6 +48,7 @@ public class SalonTests
         Assert.Equal("Streetova 2000/20", salon.Address.Line1);
     }
 
+    [Trait("Category", "Update")]
     [Fact]
     public void Update_Should_ThrowArgumentNullException_When_NameIsNull()
     {
@@ -52,6 +58,7 @@ public class SalonTests
                                                                 new AddressBuilder().Build()));
     }
 
+    [Trait("Category", "Update")]
     [Fact]
     public void Update_Should_ThrowArgumentNullException_When_EmailIsNull()
     {
@@ -61,6 +68,7 @@ public class SalonTests
                                                                 new AddressBuilder().Build()));
     }
 
+    [Trait("Category", "Update")]
     [Fact]
     public void Update_Should_ThrowArgumentNullException_When_PhoneNumberIsNull()
     {
@@ -70,6 +78,7 @@ public class SalonTests
                                                                 new AddressBuilder().Build()));
     }
 
+    [Trait("Category", "Update")]
     [Fact]
     public void Update_Should_ThrowArgumentNullException_When_AddressIsNull()
     {
@@ -78,6 +87,7 @@ public class SalonTests
         Assert.Throws<ArgumentNullException>(() => salon.Update("Salon 1", "Description", "salon@email.cz", "456123789", null!));
     }
 
+    [Trait("Category", "Update")]
     [Fact]
     public void Update_Should_UpdateAllValues_When_ValidValuesAreProvided()
     {

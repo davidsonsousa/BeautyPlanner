@@ -54,13 +54,12 @@ jobs:
           --no-restore
           /p:ContinuousIntegrationBuild=true
 
-      - name: Test with coverage
+      - name: Test
         run: >
           dotnet test src/TenantService/BeautyPlanner.TenantService.slnx
           --configuration Release
           --no-build
           --verbosity normal
-          --collect:"XPlat Code Coverage"
 
       - name: Generate coverage report
         uses: danielpalme/ReportGenerator-GitHub-Action@5.5.12

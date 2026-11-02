@@ -14,6 +14,7 @@ public class TenantManagementServiceTests
         _sut = new TenantManagementService(_repositoryMock.Object, _unitOfWorkMock.Object);
     }
 
+    [Trait("Category", "Create")]
     [Fact]
     public async Task CreateTenantAsync_Should_CreateTenant_When_ModelIsValid()
     {
@@ -43,6 +44,7 @@ public class TenantManagementServiceTests
         _unitOfWorkMock.Verify(x => x.SaveChangesAsync(), Times.Once);
     }
 
+    [Trait("Category", "Update")]
     [Fact]
     public async Task UpdateTenantAsync_Should_UpdateTenant_When_ModelIsValid()
     {
@@ -74,6 +76,7 @@ public class TenantManagementServiceTests
         _unitOfWorkMock.Verify(x => x.SaveChangesAsync(), Times.Once);
     }
 
+    [Trait("Category", "Update")]
     [Fact]
     public async Task UpdateTenantAsync_Should_ThrowNotFoundException_When_TenantNotFound()
     {
@@ -87,6 +90,7 @@ public class TenantManagementServiceTests
         await Assert.ThrowsAsync<NotFoundException>(() => _sut.UpdateTenantAsync(model));
     }
 
+    [Trait("Category", "Delete")]
     [Fact]
     public async Task DeleteTenantAsync_Should_DeleteTenant_When_TenantFound()
     {
@@ -114,6 +118,7 @@ public class TenantManagementServiceTests
         _unitOfWorkMock.Verify(x => x.SaveChangesAsync(), Times.Once);
     }
 
+    [Trait("Category", "Delete")]
     [Fact]
     public async Task DeleteTenantAsync_Should_ThrowNotFoundException_When_TenantNotFound()
     {
@@ -127,6 +132,7 @@ public class TenantManagementServiceTests
         await Assert.ThrowsAsync<NotFoundException>(() => _sut.DeleteTenantAsync(model.VanityId));
     }
 
+    [Trait("Category", "Get")]
     [Fact]
     public async Task GetTenantAsyncById_Should_ReturnTenant_When_TenantFound()
     {
@@ -145,6 +151,7 @@ public class TenantManagementServiceTests
         _repositoryMock.Verify(x => x.GetByIdAsync(tenant.Id), Times.Once);
     }
 
+    [Trait("Category", "Get")]
     [Fact]
     public async Task GetTenantAsyncById_Should_ThrowNotFoundException_When_TenantNotFound()
     {
@@ -158,6 +165,7 @@ public class TenantManagementServiceTests
         await Assert.ThrowsAsync<NotFoundException>(() => _sut.GetTenantAsync(tenant.Id));
     }
 
+    [Trait("Category", "Get")]
     [Fact]
     public async Task GetTenantAsyncByVanityId_Should_ReturnTenant_When_TenantFound()
     {
@@ -176,6 +184,7 @@ public class TenantManagementServiceTests
         _repositoryMock.Verify(x => x.GetByVanityIdAsync(tenant.VanityId), Times.Once);
     }
 
+    [Trait("Category", "Get")]
     [Fact]
     public async Task GetTenantAsyncByVanityId_Should_ThrowNotFoundException_When_TenantNotFound()
     {
@@ -189,6 +198,7 @@ public class TenantManagementServiceTests
         await Assert.ThrowsAsync<NotFoundException>(() => _sut.GetTenantAsync(tenant.VanityId));
     }
 
+    [Trait("Category", "Get")]
     [Fact]
     public async Task GetTenantsAsync_Should_ReturnListOfTenants_When_TenantsFound()
     {
@@ -213,6 +223,7 @@ public class TenantManagementServiceTests
         _repositoryMock.Verify(x => x.ListAsync(), Times.Once);
     }
 
+    [Trait("Category", "Get")]
     [Fact]
     public async Task GetTenantsAsync_Should_ReturnEmpty_When_TenantsNotFound()
     {

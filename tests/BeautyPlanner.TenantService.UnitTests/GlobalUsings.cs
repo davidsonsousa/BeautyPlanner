@@ -1,4 +1,5 @@
-﻿global using BeautyPlanner.Shared.Domain.Common;
+﻿global using BeautyPlanner.Shared.Application.Models;
+global using BeautyPlanner.Shared.Domain.Common;
 global using BeautyPlanner.Shared.Exceptions;
 global using BeautyPlanner.Shared.Interfaces;
 global using BeautyPlanner.TenantService.Application.Models;

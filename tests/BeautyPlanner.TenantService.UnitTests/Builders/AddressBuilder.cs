@@ -49,4 +49,9 @@ public class AddressBuilder
     {
         return new Address(_line1, _line2, _postalCode, _city, _stateProvince, _country);
     }
+
+    public AddressModel BuildModel()
+    {
+        return new AddressModel(_line1, _line2, _postalCode, _city, _stateProvince, _country);
+    }
 }

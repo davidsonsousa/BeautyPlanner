@@ -1,4 +1,5 @@
 <Solution>
+  <Project Path="../../tests/BeautyPlanner.TenantService.UnitTests/BeautyPlanner.TenantService.UnitTests.csproj" />
   <Project Path="../BeautyPlanner.Shared/BeautyPlanner.Shared.csproj" />
   <Project Path="BeautyPlanner.TenantService.Api/BeautyPlanner.TenantService.Api.csproj" />
   <Project Path="BeautyPlanner.TenantService/BeautyPlanner.TenantService.csproj" />

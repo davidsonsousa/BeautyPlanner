@@ -8,6 +8,7 @@ on:
     paths:
       - 'src/StaffService/**'
       - 'src/BeautyPlanner.Shared/**'
+      - 'tests/BeautyPlanner.StaffService.UnitTests/**'
       - '.github/workflows/staff-service-ci.yml'
   pull_request:
     branches: [ "develop", "main" ]
@@ -17,11 +18,9 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
-    name: Build
-
+  staff-service-ci:
+    name: Build & Test
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v7.0.0
         with:
@@ -44,28 +43,35 @@ jobs:
         run: dotnet restore src/StaffService/BeautyPlanner.StaffService.slnx
 
       - name: Verify formatting
-        run: dotnet format src/StaffService/BeautyPlanner.StaffService.slnx --verify-no-changes
+        run: >
+          dotnet format src/StaffService/BeautyPlanner.StaffService.slnx
+          --verify-no-changes
 
       - name: Build
-        run: dotnet build src/StaffService/BeautyPlanner.StaffService.slnx --configuration Release --no-restore /p:ContinuousIntegrationBuild=true
+        run: >
+          dotnet build src/StaffService/BeautyPlanner.StaffService.slnx
+          --configuration Release
+          --no-restore
+          /p:ContinuousIntegrationBuild=true
 
-  # test: (needs to complete configuration)
-  #   name: Test
-  #   runs-on: ubuntu-latest
-  #     - name: test with coverage
-  #       run: dotnet test --configuration release --no-build --verbosity normal --collect:"xplat code coverage"
+      - name: Test
+        run: >
+          dotnet test src/StaffService/BeautyPlanner.StaffService.slnx
+          --configuration Release
+          --no-build
+          --verbosity normal
 
-  #     - name: generate coverage report
-  #       uses: danielpalme/reportgenerator-github-action@5.5.10
-  #       if: always()
-  #       with:
-  #         reports: '**/coverage.cobertura.xml'
-  #         targetdir: 'coveragereport'
+      # - name: Generate coverage report
+      #   uses: danielpalme/ReportGenerator-GitHub-Action@5.5.12
+      #   with:
+      #     reports: '**/coverage.cobertura.xml'
+      #     targetdir: coveragereport
+      #     reporttypes: Cobertura
 
-  #     - name: upload coverage report
-  #       uses: actions/upload-artifact@v7.0.1
-  #       if: always()
-  #       with:
-  #         name: coverage-report
-  #         path: coveragereport
-  #         retention-days: 7
+      # - name: Upload coverage report
+      #   uses: actions/upload-artifact@v7.0.1
+      #   if: always()
+      #   with:
+      #     name: coverage-report
+      #     path: coveragereport
+      #     retention-days: 7

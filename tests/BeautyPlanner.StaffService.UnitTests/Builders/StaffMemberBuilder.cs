@@ -6,6 +6,7 @@ public class StaffMemberBuilder
     private Guid _vanityId = Guid.Empty;
     private int _professionId = 999;
     private Guid _professionVanityId = Guid.Empty;
+    private Profession _profession = new ProfessionBuilder().Build();
     private Guid _salonVanityId = Guid.Empty;
     private string _firstName = "FirstName";
     private string _lastName = "LastName";
@@ -53,7 +54,10 @@ public class StaffMemberBuilder
 
     public StaffMember Build()
     {
-        return new StaffMember(_firstName, _lastName, _email, _phoneNumber, _professionId, _dateOfBirth, _address, _salonVanityId);
+        return new StaffMember(_firstName, _lastName, _email, _phoneNumber, _professionId, _dateOfBirth, _address, _salonVanityId)
+        {
+            Profession = _profession
+        };
     }
 
     public CreateStaffMemberModel BuildCreateModel()

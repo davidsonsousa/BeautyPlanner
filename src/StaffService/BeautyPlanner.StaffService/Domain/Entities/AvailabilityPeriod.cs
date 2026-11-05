@@ -26,6 +26,11 @@ public class AvailabilityPeriod : AuditableEntity
 
     private void SetPropertyValues(DayOfWeek dayOfWeek, TimeSpan startTime, TimeSpan endTime)
     {
+        if (startTime >= endTime)
+        {
+            throw new ArgumentException("Start time should be after end time");
+        }
+
         DayOfWeek = dayOfWeek;
         StartTime = startTime;
         EndTime = endTime;

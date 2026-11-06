@@ -1,0 +1,9 @@
+global using BeautyPlanner.Shared.Application.Models;
+global using BeautyPlanner.Shared.Domain.Common;
+global using BeautyPlanner.Shared.Exceptions;
+global using BeautyPlanner.Shared.Interfaces;
+global using BeautyPlanner.ClientService.Application.Models;
+global using BeautyPlanner.ClientService.Application.Services;
+global using BeautyPlanner.ClientService.Domain.Entities;
+global using BeautyPlanner.ClientService.UnitTests.Builders;
+global using Moq;

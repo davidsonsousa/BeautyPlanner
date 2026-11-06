@@ -18,7 +18,10 @@ public class StaffManagementService : IStaffManagementService
         var profession = await _professionRepository.GetByVanityIdAsync(model.ProfessionId) ?? throw new NotFoundException("Profession", model.ProfessionId);
 
         var staffMember = new StaffMember(model.FirstName, model.LastName, model.Email, model.PhoneNumber, profession.Id, model.DateOfBirth,
-                                          PrepareAddress(model.Address), model.SalonId);
+                                          PrepareAddress(model.Address), model.SalonId)
+        {
+            Profession = profession
+        };
 
         await _staffRepository.AddAsync(staffMember);
         await _unitOfWork.SaveChangesAsync();

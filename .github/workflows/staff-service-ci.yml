@@ -7,7 +7,6 @@ on:
     branches: [ "feature/**", "develop" ]
     paths:
       - 'src/StaffService/**'
-      - 'src/BeautyPlanner.Shared/**'
       - 'tests/BeautyPlanner.StaffService.UnitTests/**'
       - '.github/workflows/staff-service-ci.yml'
   pull_request:

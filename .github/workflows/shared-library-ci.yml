@@ -1,0 +1,53 @@
+name: Shared Library CI
+
+on:
+  workflow_dispatch:
+
+  push:
+    branches: [ "feature/**", "develop" ]
+    paths:
+      - 'src/BeautyPlanner.Shared/**'
+      - '.github/workflows/shared-library-ci.yml'
+  pull_request:
+    branches: [ "develop", "main" ]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  shared-library-ci:
+    name: Build & Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.0
+        with:
+          fetch-depth: 0
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 10.0.402
+
+      - name: Cache NuGet packages
+        uses: actions/cache@v5
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json', '**/Directory.Packages.props') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
+
+      - name: Restore dependencies
+        run: dotnet restore src/BeautyPlanner.Shared/BeautyPlanner.Shared.csproj
+
+      - name: Verify formatting
+        run: >
+          dotnet format src/BeautyPlanner.Shared/BeautyPlanner.Shared.csproj
+          --verify-no-changes
+
+      - name: Build
+        run: >
+          dotnet build src/BeautyPlanner.Shared/BeautyPlanner.Shared.csproj
+          --configuration Release
+          --no-restore
+          /p:ContinuousIntegrationBuild=true

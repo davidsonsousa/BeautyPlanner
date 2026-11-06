@@ -11,6 +11,7 @@
   <Folder Name="/.solution-files/.github/workflows/">
     <File Path=".github/workflows/tenant-service-ci.yml" />
     <File Path=".github/workflows/client-service-ci.yml" />
+    <File Path=".github/workflows/shared-library-ci.yml" />
     <File Path=".github/workflows/staff-service-ci.yml" />
     <File Path=".github/workflows/catalog-service-ci.yml" />
     <File Path=".github/workflows/booking-service-ci.yml" />

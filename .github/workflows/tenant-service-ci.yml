@@ -7,7 +7,6 @@ on:
     branches: [ "feature/**", "develop" ]
     paths:
       - 'src/TenantService/**'
-      - 'src/BeautyPlanner.Shared/**'
       - 'tests/BeautyPlanner.TenantService.UnitTests/**'
       - '.github/workflows/tenant-service-ci.yml'
   pull_request:

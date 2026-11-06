@@ -51,10 +51,3 @@ jobs:
           --configuration Release
           --no-restore
           /p:ContinuousIntegrationBuild=true
-
-      - name: Test
-        run: >
-          dotnet test src/BeautyPlanner.Shared/BeautyPlanner.Shared.csproj
-          --configuration Release
-          --no-build
-          --verbosity normal

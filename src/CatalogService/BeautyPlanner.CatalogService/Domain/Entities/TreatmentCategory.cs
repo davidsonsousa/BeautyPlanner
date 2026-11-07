@@ -21,7 +21,7 @@ public class TreatmentCategory : AuditableEntity
     public virtual ICollection<Treatment> Treatments { get; set; } = null!;
 
 
-    public void Update(string name, string? description)
+    public void Update(string name, string? description = null)
     {
         SetPropertyValues(name, description);
     }

@@ -28,7 +28,7 @@ public class Treatment : AuditableEntity
     // Navigation properties
     public int TreatmentCategoryId { get; private set; }
 
-    public virtual TreatmentCategory TreatmentCategory { get; private set; } = null!;
+    public virtual TreatmentCategory TreatmentCategory { get; set; } = null!;
 
     public Guid SalonVanityId { get; private set; }
 

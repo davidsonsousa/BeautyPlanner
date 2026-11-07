@@ -7,7 +7,7 @@ on:
     branches: [ "feature/**", "develop" ]
     paths:
       - 'src/CatalogService/**'
-      # - 'tests/BeautyPlanner.CatalogService.UnitTests/**'
+      - 'tests/BeautyPlanner.CatalogService.UnitTests/**'
       - '.github/workflows/catalog-service-ci.yml'
   pull_request:
     branches: [ "develop", "main" ]
@@ -53,12 +53,12 @@ jobs:
           --no-restore
           /p:ContinuousIntegrationBuild=true
 
-      # - name: Test
-      #   run: >
-      #     dotnet test src/CatalogService/BeautyPlanner.CatalogService.slnx
-      #     --configuration Release
-      #     --no-build
-      #     --verbosity normal
+      - name: Test
+        run: >
+          dotnet test src/CatalogService/BeautyPlanner.CatalogService.slnx
+          --configuration Release
+          --no-build
+          --verbosity normal
 
       # - name: Generate coverage report
       #   uses: danielpalme/ReportGenerator-GitHub-Action@5.5.12

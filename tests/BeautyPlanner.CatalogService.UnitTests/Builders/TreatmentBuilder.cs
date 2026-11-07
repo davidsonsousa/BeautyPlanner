@@ -6,6 +6,7 @@ public class TreatmentBuilder
     private Guid _vanityId = Guid.Empty;
     private int _treatmentCategoryId = 999;
     private Guid _treatmentCategoryVanityId = Guid.Empty;
+    private TreatmentCategory _treatmentCategory = new TreatmentCategoryBuilder().Build();
     private Guid _professionVanityId = Guid.Empty;
     private Guid _salonVanityId = Guid.Empty;
     private string _name = "Default treatment";
@@ -39,7 +40,10 @@ public class TreatmentBuilder
 
     public Treatment Build()
     {
-        return new Treatment(_name, _description, _price, _durationInMinutes, _salonVanityId, _professionVanityId, _treatmentCategoryId);
+        return new Treatment(_name, _description, _price, _durationInMinutes, _salonVanityId, _professionVanityId, _treatmentCategoryId)
+        {
+            TreatmentCategory = _treatmentCategory
+        };
     }
 
     public CreateTreatmentModel BuildCreateModel()

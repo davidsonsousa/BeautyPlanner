@@ -17,7 +17,10 @@ public class TreatmentManagementService : ITreatmentManagementService
     {
         var treatmentCategory = await _treatmentCategoryRepository.GetByVanityIdAsync(model.TreatmentCategoryId) ?? throw new NotFoundException("TreatmentCategory", model.TreatmentCategoryId);
 
-        var treatment = new Treatment(model.Name, model.Description, model.Price, model.DurationInMinutes, model.SalonId, model.ProfessionId, treatmentCategory.Id);
+        var treatment = new Treatment(model.Name, model.Description, model.Price, model.DurationInMinutes, model.SalonId, model.ProfessionId, treatmentCategory.Id)
+        {
+            TreatmentCategory = treatmentCategory
+        };
 
         await _treatmentRepository.AddAsync(treatment);
         await _unitOfWork.SaveChangesAsync();

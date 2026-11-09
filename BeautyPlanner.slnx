@@ -49,6 +49,7 @@
     <Project Path="src/BeautyPlanner.Shared/BeautyPlanner.Shared.csproj" Id="9f494612-0cd2-4ce1-83f1-11264b5da5fe" />
   </Folder>
   <Folder Name="/tests/">
+    <Project Path="tests/BeautyPlanner.BookingService.UnitTests/BeautyPlanner.BookingService.UnitTests.csproj" Id="6d3675c8-7ea9-45c7-b56e-f0b945b594b1" />
     <Project Path="tests/BeautyPlanner.CatalogService.UnitTests/BeautyPlanner.CatalogService.UnitTests.csproj" Id="1972cd9b-e4e4-475a-a203-06b6608972e2" />
     <Project Path="tests/BeautyPlanner.ClientService.UnitTests/BeautyPlanner.ClientService.UnitTests.csproj" Id="b1a1ab18-3956-49bc-84b7-a091879b9978" />
     <Project Path="tests/BeautyPlanner.StaffService.UnitTests/BeautyPlanner.StaffService.UnitTests.csproj" Id="fb6d2627-243b-47ef-bd66-60ca3f7a830b" />

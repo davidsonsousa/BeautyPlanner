@@ -1,0 +1,11 @@
+global using BeautyPlanner.BookingService.Application.Models;
+global using BeautyPlanner.BookingService.Application.Services;
+global using BeautyPlanner.BookingService.Domain.Entities;
+global using BeautyPlanner.BookingService.Domain.ValueObjects;
+global using BeautyPlanner.BookingService.UnitTests.Builders;
+global using BeautyPlanner.Shared.Application.Models;
+global using BeautyPlanner.Shared.Domain.Common;
+global using BeautyPlanner.Shared.Domain.Enums;
+global using BeautyPlanner.Shared.Exceptions;
+global using BeautyPlanner.Shared.Interfaces;
+global using Moq;

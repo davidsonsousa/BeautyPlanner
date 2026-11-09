@@ -4,7 +4,6 @@ public class Appointment : AuditableEntity
 {
     public Appointment()
     {
-
     }
 
     public Appointment(TimeRange timeRange, Guid clientId, Guid staffMemberId, Guid treatmentId, Guid salonId)
@@ -15,6 +14,7 @@ public class Appointment : AuditableEntity
         StaffMemberId = staffMemberId;
         TreatmentId = treatmentId;
         SalonId = salonId;
+
         Status = AppointmentStatus.Created;
     }
 
@@ -22,7 +22,6 @@ public class Appointment : AuditableEntity
 
     public AppointmentStatus Status { get; private set; }
 
-    // Navigation properties
     public Guid ClientId { get; private set; }
 
     public Guid StaffMemberId { get; private set; }
@@ -41,11 +40,31 @@ public class Appointment : AuditableEntity
         Status = AppointmentStatus.Confirmed;
     }
 
+    public void Start()
+    {
+        if (Status != AppointmentStatus.Confirmed)
+        {
+            throw new InvalidOperationException("Only confirmed appointments can be started.");
+        }
+
+        Status = AppointmentStatus.InProgress;
+    }
+
+    public void Complete()
+    {
+        if (Status != AppointmentStatus.InProgress)
+        {
+            throw new InvalidOperationException("Only appointments in progress can be completed.");
+        }
+
+        Status = AppointmentStatus.Completed;
+    }
+
     public void ClientCancel()
     {
-        if (Status == AppointmentStatus.Completed)
+        if (Status != AppointmentStatus.Created && Status != AppointmentStatus.Confirmed)
         {
-            throw new InvalidOperationException("Completed appointments cannot be canceled.");
+            throw new InvalidOperationException("Only created or confirmed appointments can be canceled.");
         }
 
         Status = AppointmentStatus.CanceledByClient;
@@ -53,26 +72,41 @@ public class Appointment : AuditableEntity
 
     public void StaffCancel()
     {
-        if (Status == AppointmentStatus.Completed)
+        if (Status != AppointmentStatus.Created && Status != AppointmentStatus.Confirmed)
         {
-            throw new InvalidOperationException("Completed appointments cannot be canceled.");
+            throw new InvalidOperationException("Only created or confirmed appointments can be canceled.");
         }
 
         Status = AppointmentStatus.CanceledByStaff;
     }
 
-    public void Complete()
+    public void MarkNoShow()
     {
         if (Status != AppointmentStatus.Confirmed)
         {
-            throw new InvalidOperationException("Only confirmed appontments can be completed.");
+            throw new InvalidOperationException("Only confirmed appointments can be marked as no-show.");
         }
 
-        Status = AppointmentStatus.Completed;
+        Status = AppointmentStatus.NoShow;
+    }
+
+    public void Expire()
+    {
+        if (Status != AppointmentStatus.Created && Status != AppointmentStatus.Confirmed)
+        {
+            throw new InvalidOperationException("Only created or confirmed appointments can expire.");
+        }
+
+        Status = AppointmentStatus.Expired;
     }
 
     public void Update(TimeRange period, Guid clientId, Guid staffMemberId, Guid treatmentId)
     {
+        if (Status == AppointmentStatus.Completed || Status == AppointmentStatus.InProgress)
+        {
+            throw new InvalidOperationException("Completed or in-progress appointments cannot be modified.");
+        }
+
         SetPropertyValues(period);
 
         ClientId = clientId;

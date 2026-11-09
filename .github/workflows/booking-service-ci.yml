@@ -7,7 +7,7 @@ on:
     branches: [ "feature/**", "develop" ]
     paths:
       - 'src/BookingService/**'
-      # - 'tests/BeautyPlanner.BookingService.UnitTests/**'
+      - 'tests/BeautyPlanner.BookingService.UnitTests/**'
       - '.github/workflows/booking-service-ci.yml'
   pull_request:
     branches: [ "develop", "main" ]
@@ -53,12 +53,12 @@ jobs:
           --no-restore
           /p:ContinuousIntegrationBuild=true
 
-      # - name: Test
-      #   run: >
-      #     dotnet test src/BookingService/BeautyPlanner.BookingService.slnx
-      #     --configuration Release
-      #     --no-build
-      #     --verbosity normal
+      - name: Test
+        run: >
+          dotnet test src/BookingService/BeautyPlanner.BookingService.slnx
+          --configuration Release
+          --no-build
+          --verbosity normal
 
       # - name: Generate coverage report
       #   uses: danielpalme/ReportGenerator-GitHub-Action@5.5.12
